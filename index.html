@@ -1,62 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Portfolio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Mukul's Portfolio - Computer Science Student showcasing projects and skills">
+        <meta name="keywords" content="portfolio, computer science, web development, python, projects">
+        <title>Mukul's Portfolio | Computer Science Student</title>
         <link rel="stylesheet" href="portfolio.css">
-        <source src="bp.mp4" type="video/mp4">
     </head>
     <body>
+        <!-- Video Background -->
         <div class="video-background">
             <video autoplay muted loop playsinline>
                 <source src="bp.mp4" type="video/mp4">
             </video>
         </div>
-        <div class="button-container">
-            <button onclick="document.getElementById('home').scrollIntoView({behavior: 'smooth'})">Home</button>
-        <div>
-            <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">About Me</button>
-            <button onclick="document.getElementById('skills').scrollIntoView({behavior: 'smooth'})">Skills</button>
-            <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">Projects</button>
-        </div>
-        </div>
-        <div id="home" class="welcome-message">
-            <h1>Welcome to My Portfolio</h1>
-            <p>Hi, I'm Mukul. I'm a Computer Science Student.</p>
-        </div>
-        <div id="about" class="About-Me">
-            <h1>About Me</h1>
-            <p>Hi, I'm Mukul. I'm a Computer Science Student passionate about creating innovative web applications and solving complex problems through code. With a strong foundation in programming languages like Python, JavaScript, and C++, I'm constantly exploring new technologies and frameworks to expand my skill set. When I'm not coding, you'll find me contributing to open-source projects, participating in hackathons, or learning about the latest trends in artificial intelligence and machine learning. I believe in writing clean, efficient code and building user-friendly interfaces that make a difference. Let's connect and create something amazing together!</p>
-        </div>
-        <div id="skills" class="section">
-            <h2>My Skills</h2>
-            <div class="skills-container">
-            <div class="skill">HTML</div>
-            <div class="skill">CSS</div>
-            <div class="skill">Python</div>
-            <div class="skill">Git</div>
-            <div class="skill">GitHub</div>
-            <div class="skill">C</div>
-            <div class="skill">Mathematics</div>
-            <div class="skill">Debugging in Python</div>
-            <div class="skill">Data Structures in Python</div>
+
+        <!-- Navigation Bar -->
+        <nav class="button-container" role="navigation" aria-label="Main Navigation">
+            <div class="nav-brand">
+                <h3>Mukul</h3>
             </div>
-        </div>
-        <div id="projects" class="section">
-            <h2>My Projects</h2>
-            <div class="projects-container">
-            <div class="project">
-                <h3>SIH Pathhole Detection</h3>
-                <p>A project focused on detecting potholes using computer vision and machine learning techniques to improve road safety and maintenance.</p>
+            <div class="nav-links">
+                <button onclick="document.getElementById('home').scrollIntoView({behavior: 'smooth'})" class="nav-button">Home</button>
+                <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})" class="nav-button">About Me</button>
+                <button onclick="document.getElementById('skills').scrollIntoView({behavior: 'smooth'})" class="nav-button">Skills</button>
+                <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="nav-button">Projects</button>
             </div>
-            <div class="project">
-                <h3>Python Simple Maths Interpreter</h3>
-                <p>A mathematical expression interpreter built in Python that can evaluate and solve various mathematical operations and equations.</p>
+        </nav>
+
+        <!-- Hero Section / Home -->
+        <section id="home" class="hero-section">
+            <div class="welcome-message">
+                <h1>Welcome to My Portfolio</h1>
+                <p class="subtitle">Hi, I'm Mukul. I'm a Computer Science Student.</p>
+                <div class="hero-buttons">
+                    <button class="cta-button" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">Learn More</button>
+                    <button class="secondary-button" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">View Projects</button>
+                </div>
             </div>
-            <div class="project">
-                <h3>My Portfolio Website</h3>
-                <p>A personal portfolio website showcasing my skills, projects, and experience as a Computer Science student.</p>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="About-Me">
+            <div class="section-content">
+                <h2>About Me</h2>
+                <p>Hi, I'm Mukul. I'm a Computer Science Student passionate about creating innovative web applications and solving complex problems through code. With a strong foundation in programming languages like Python, JavaScript, and C++, I'm constantly exploring new technologies and frameworks to expand my skill set.</p>
+                <p>When I'm not coding, you'll find me contributing to open-source projects, participating in hackathons, or learning about the latest trends in artificial intelligence and machine learning. I believe in writing clean, efficient code and building user-friendly interfaces that make a difference.</p>
+                <p class="highlight-text">Let's connect and create something amazing together!</p>
             </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section skills-section">
+            <div class="section-content">
+                <h2>My Skills</h2>
+                <p class="section-description">A comprehensive set of technical skills acquired through education and practical experience.</p>
+                <div class="skills-container">
+                    <div class="skill">
+                        <span class="skill-icon">📝</span>
+                        <span>HTML</span>
+                    </div>
+                    <div class="skill">
+                        <span class="skill-icon">🎨</span>
+                        <span>CSS</span>
+                    </div>
+                    <div class="skill">
+                        <span class="skill-icon">🐍</span>
+                        <span>Python</span>
+                    </div>
+                    <div class="skill">
+                        <span class="skill-icon">📦</span>
+                        <span>Git</span>
+                    </div>
+                    <div class="skill">
+                        <span class="skill-icon">🐙</span>
+                        <span>GitHub</span>
+                    </div>
+                    <div class="skill">
+                        <span class="skill-icon">⚙️</span>
+                        <span>C</span>
+                    </div>
+                    <div class="skill">
+                        <span class="skill-icon">📐</span>
+                        <span>Mathematics</span>
+                    </div>
+                    <div class="skill">
+                        <span class="skill-icon">🐛</span>
+                        <span>Debugging in Python</span>
+                    </div>
+                    <div class="skill">
+                        <span class="skill-icon">📊</span>
+                        <span>Data Structures</span>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+            <div class="section-content">
+                <h2>My Projects</h2>
+                <p class="section-description">A showcase of my recent and notable projects demonstrating my technical abilities.</p>
+                <div class="projects-container">
+                    <article class="project">
+                        <div class="project-header">
+                            <h3>SIH Pathhole Detection</h3>
+                            <span class="project-tag">Computer Vision</span>
+                        </div>
+                        <p>A project focused on detecting potholes using computer vision and machine learning techniques to improve road safety and maintenance.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">OpenCV</span>
+                            <span class="tech-badge">ML</span>
+                        </div>
+                    </article>
+
+                    <article class="project">
+                        <div class="project-header">
+                            <h3>Python Simple Maths Interpreter</h3>
+                            <span class="project-tag">Backend</span>
+                        </div>
+                        <p>A mathematical expression interpreter built in Python that can evaluate and solve various mathematical operations and equations.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Parsing</span>
+                            <span class="tech-badge">Algorithms</span>
+                        </div>
+                    </article>
+
+                    <article class="project">
+                        <div class="project-header">
+                            <h3>My Portfolio Website</h3>
+                            <span class="project-tag">Frontend</span>
+                        </div>
+                        <p>A personal portfolio website showcasing my skills, projects, and experience as a Computer Science student with modern design principles.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">CSS</span>
+                            <span class="tech-badge">JavaScript</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://github.com" target="_blank">GitHub</a></li>
+                        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+                        <li><a href="mailto:your-email@example.com">Email</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Computer Science Student | Web Developer | Problem Solver</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Mukul's Portfolio. All rights reserved.</p>
+            </div>
+        </footer>
+
     </body>
 </html>

@@ -1,179 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Mukul's Portfolio - Computer Science Student showcasing projects and skills">
-        <meta name="keywords" content="portfolio, computer science, web development, python, projects">
-        <title>Mukul's Portfolio | Computer Science Student</title>
-        <link rel="stylesheet" href="portfolio.css">
-    </head>
-    <body>
-        <!-- Video Background -->
-        <div class="video-background">
-            <video autoplay muted loop playsinline>
-                <source src="bp.mp4" type="video/mp4">
-            </video>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mukul Kukreja — Computer Science Student & Developer">
+    <title>Mukul Kukreja | CS Student & Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="nav-brand">
+        <span class="brand-dot"></span>
+        <span>Mukul</span>
+    </div>
+    <div class="nav-links">
+        <a href="#home"     class="nav-link" data-section="home">Home</a>
+        <a href="#about"    class="nav-link" data-section="about">About</a>
+        <a href="#skills"   class="nav-link" data-section="skills">Skills</a>
+        <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+        <a href="#contact"  class="nav-link" data-section="contact">Contact</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#home"     class="mobile-link">Home</a>
+    <a href="#about"    class="mobile-link">About</a>
+    <a href="#skills"   class="mobile-link">Skills</a>
+    <a href="#projects" class="mobile-link">Projects</a>
+    <a href="#contact"  class="mobile-link">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <div class="hero-tag">
+            <span class="tag-dot"></span>
+            Open to opportunities
         </div>
-
-        <!-- Navigation Bar -->
-        <nav class="button-container" role="navigation" aria-label="Main Navigation">
-            <div class="nav-brand">
-                <h3>Mukul</h3>
+        <h1 class="hero-title">
+            <span class="line hi-line">Hi, I'm</span>
+            <span class="line name-line">Mukul<span class="accent">.</span></span>
+        </h1>
+        <p class="hero-sub" id="heroSub"></p>
+        <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">
+                <span>View My Work</span>
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-num" data-target="3" style="color:#fff;display:block;">0</span>
+                <span class="stat-label">Projects</span>
             </div>
-            <div class="nav-links">
-                <button onclick="document.getElementById('home').scrollIntoView({behavior: 'smooth'})" class="nav-button">Home</button>
-                <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})" class="nav-button">About Me</button>
-                <button onclick="document.getElementById('skills').scrollIntoView({behavior: 'smooth'})" class="nav-button">Skills</button>
-                <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="nav-button">Projects</button>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-num" data-target="9" style="color:#fff;display:block;">0</span>
+                <span class="stat-label">Skills</span>
             </div>
-        </nav>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-num" data-target="2" style="color:#fff;display:block;">0</span>
+                <span class="stat-label">Years Learning</span>
+            </div>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="orbit-ring ring-1"><div class="orbit-icon">🐍</div></div>
+        <div class="orbit-ring ring-2"><div class="orbit-icon">⚙️</div></div>
+        <div class="orbit-ring ring-3"><div class="orbit-icon">📊</div></div>
+        <div class="center-blob"><span>CS</span></div>
+    </div>
+    <div class="scroll-hint"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
 
-        <!-- Hero Section / Home -->
-        <section id="home" class="hero-section">
-            <div class="welcome-message">
-                <h1>Welcome to My Portfolio</h1>
-                <p class="subtitle">Hi, I'm Mukul. I'm a Computer Science Student.</p>
-                <div class="hero-buttons">
-                    <button class="cta-button" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">Learn More</button>
-                    <button class="secondary-button" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">View Projects</button>
+<!-- ABOUT -->
+<section id="about" class="section about-section">
+    <div class="container">
+        <div class="section-label">Who I Am</div>
+        <div class="about-grid">
+            <div class="about-text">
+                <h2 class="section-title">Passionate about<br><em>building things</em></h2>
+                <p>Hi, I'm <strong>Mukul Kukreja</strong> — a Computer Science student driven by curiosity and a love for solving real-world problems with code. I build clean, efficient software and am constantly learning new technologies to sharpen my skills.</p>
+                <p>I've competed in hackathons like <strong>Smart India Hackathon (SIH)</strong>, contributed to impactful projects, and explored fields ranging from computer vision to web development. I believe great software is both elegant and genuinely useful.</p>
+                <p class="highlight-text">✦ Let's connect and build something that matters.</p>
+                <a href="#contact" class="btn btn-primary" style="margin-top:1.75rem;display:inline-flex;">
+                    <span>Say Hello</span>
+                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
+            <div class="about-cards">
+                <div class="info-card">
+                    <div class="card-icon">🎓</div>
+                    <h4>Education</h4>
+                    <p>B.Tech Computer Science</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">💻</div>
+                    <h4>Focus</h4>
+                    <p>Web Dev &amp; Machine Learning</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">🏆</div>
+                    <h4>Achievements</h4>
+                    <p>SIH Hackathon Contributor</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">🌍</div>
+                    <h4>Interests</h4>
+                    <p>AI, Open Source, Problem Solving</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <!-- About Me Section -->
-        <section id="about" class="About-Me">
-            <div class="section-content">
-                <h2>About Me</h2>
-                <p>Hi, I'm Mukul. I'm a Computer Science Student passionate about creating innovative web applications and solving complex problems through code. With a strong foundation in programming languages like Python, JavaScript, and C++, I'm constantly exploring new technologies and frameworks to expand my skill set.</p>
-                <p>When I'm not coding, you'll find me contributing to open-source projects, participating in hackathons, or learning about the latest trends in artificial intelligence and machine learning. I believe in writing clean, efficient code and building user-friendly interfaces that make a difference.</p>
-                <p class="highlight-text">Let's connect and create something amazing together!</p>
+<!-- SKILLS -->
+<section id="skills" class="section skills-section">
+    <div class="container">
+        <div class="section-label">What I Know</div>
+        <h2 class="section-title">My <em>Skills</em></h2>
+        <p class="section-desc">Technical expertise built through hands-on projects and continuous learning.</p>
+        <div class="skills-grid">
+            <div class="skill-card" data-delay="0">
+                <div class="skill-icon-wrap">📝</div>
+                <span class="skill-name">HTML</span>
+                <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+                <span class="skill-pct">90%</span>
             </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="section skills-section">
-            <div class="section-content">
-                <h2>My Skills</h2>
-                <p class="section-description">A comprehensive set of technical skills acquired through education and practical experience.</p>
-                <div class="skills-container">
-                    <div class="skill">
-                        <span class="skill-icon">📝</span>
-                        <span>HTML</span>
-                    </div>
-                    <div class="skill">
-                        <span class="skill-icon">🎨</span>
-                        <span>CSS</span>
-                    </div>
-                    <div class="skill">
-                        <span class="skill-icon">🐍</span>
-                        <span>Python</span>
-                    </div>
-                    <div class="skill">
-                        <span class="skill-icon">📦</span>
-                        <span>Git</span>
-                    </div>
-                    <div class="skill">
-                        <span class="skill-icon">🐙</span>
-                        <span>GitHub</span>
-                    </div>
-                    <div class="skill">
-                        <span class="skill-icon">⚙️</span>
-                        <span>C</span>
-                    </div>
-                    <div class="skill">
-                        <span class="skill-icon">📐</span>
-                        <span>Mathematics</span>
-                    </div>
-                    <div class="skill">
-                        <span class="skill-icon">🐛</span>
-                        <span>Debugging in Python</span>
-                    </div>
-                    <div class="skill">
-                        <span class="skill-icon">📊</span>
-                        <span>Data Structures</span>
-                    </div>
-                </div>
+            <div class="skill-card" data-delay="60">
+                <div class="skill-icon-wrap">🎨</div>
+                <span class="skill-name">CSS</span>
+                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                <span class="skill-pct">85%</span>
             </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="section projects-section">
-            <div class="section-content">
-                <h2>My Projects</h2>
-                <p class="section-description">A showcase of my recent and notable projects demonstrating my technical abilities.</p>
-                <div class="projects-container">
-                    <article class="project">
-                        <div class="project-header">
-                            <h3>SIH Pathhole Detection</h3>
-                            <span class="project-tag">Computer Vision</span>
-                        </div>
-                        <p>A project focused on detecting potholes using computer vision and machine learning techniques to improve road safety and maintenance.</p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">OpenCV</span>
-                            <span class="tech-badge">ML</span>
-                        </div>
-                    </article>
-
-                    <article class="project">
-                        <div class="project-header">
-                            <h3>Python Simple Maths Interpreter</h3>
-                            <span class="project-tag">Backend</span>
-                        </div>
-                        <p>A mathematical expression interpreter built in Python that can evaluate and solve various mathematical operations and equations.</p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Parsing</span>
-                            <span class="tech-badge">Algorithms</span>
-                        </div>
-                    </article>
-
-                    <article class="project">
-                        <div class="project-header">
-                            <h3>My Portfolio Website</h3>
-                            <span class="project-tag">Frontend</span>
-                        </div>
-                        <p>A personal portfolio website showcasing my skills, projects, and experience as a Computer Science student with modern design principles.</p>
-                        <div class="project-tech">
-                            <span class="tech-badge">HTML</span>
-                            <span class="tech-badge">CSS</span>
-                            <span class="tech-badge">JavaScript</span>
-                        </div>
-                    </article>
-                </div>
+            <div class="skill-card" data-delay="120">
+                <div class="skill-icon-wrap">🐍</div>
+                <span class="skill-name">Python</span>
+                <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+                <span class="skill-pct">88%</span>
             </div>
-        </section>
-
-        <!-- Footer Section -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <ul>
-                        <li><a href="https://github.com" target="_blank">GitHub</a></li>
-                        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
-                        <li><a href="mailto:your-email@example.com">Email</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>About</h4>
-                    <p>Computer Science Student | Web Developer | Problem Solver</p>
-                </div>
+            <div class="skill-card" data-delay="180">
+                <div class="skill-icon-wrap">📦</div>
+                <span class="skill-name">Git</span>
+                <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+                <span class="skill-pct">80%</span>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Mukul's Portfolio. All rights reserved.</p>
+            <div class="skill-card" data-delay="240">
+                <div class="skill-icon-wrap">🐙</div>
+                <span class="skill-name">GitHub</span>
+                <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+                <span class="skill-pct">82%</span>
             </div>
-        </footer>
+            <div class="skill-card" data-delay="300">
+                <div class="skill-icon-wrap">⚙️</div>
+                <span class="skill-name">C Language</span>
+                <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+                <span class="skill-pct">75%</span>
+            </div>
+            <div class="skill-card" data-delay="360">
+                <div class="skill-icon-wrap">📐</div>
+                <span class="skill-name">Mathematics</span>
+                <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+                <span class="skill-pct">78%</span>
+            </div>
+            <div class="skill-card" data-delay="420">
+                <div class="skill-icon-wrap">🐛</div>
+                <span class="skill-name">Debugging</span>
+                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                <span class="skill-pct">85%</span>
+            </div>
+            <div class="skill-card" data-delay="480">
+                <div class="skill-icon-wrap">📊</div>
+                <span class="skill-name">Data Structures</span>
+                <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+                <span class="skill-pct">80%</span>
+            </div>
+        </div>
+    </div>
+</section>
 
-    </body>
+<!-- PROJECTS -->
+<section id="projects" class="section projects-section">
+    <div class="container">
+        <div class="section-label">What I've Built</div>
+        <h2 class="section-title">My <em>Projects</em></h2>
+        <p class="section-desc">Real-world projects built with purpose — from national hackathons to personal tools.</p>
+        <div class="projects-grid">
+
+            <!-- Project 1 - Featured -->
+            <article class="project-card featured">
+                <div class="project-badge">🏆 SIH Hackathon</div>
+                <div class="project-header-row">
+                    <div class="project-number">01</div>
+                    <div class="project-tag-pill">Computer Vision · Gov Tech</div>
+                </div>
+                <h3>Pothole Complaint System</h3>
+                <p>A real-world smart infrastructure system built during <strong>Smart India Hackathon (SIH)</strong>. I was a contributor on this team project that detects potholes in road footage using computer vision, then automatically files complaints to the relevant government authority — reducing manual reporting effort and improving road maintenance response times.</p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>OpenCV</span>
+                    <span>YOLOv8</span>
+                    <span>ML</span>
+                    <span>Gov API</span>
+                </div>
+                <div class="project-meta">
+                    <span class="meta-tag">👥 Team Project</span>
+                    <span class="meta-tag">🤝 Contributor</span>
+                    <span class="meta-tag">🏛️ Government Submission</span>
+                </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="project-card">
+                <div class="project-header-row">
+                    <div class="project-number">02</div>
+                    <div class="project-tag-pill">Backend · Python</div>
+                </div>
+                <h3>Simple Maths Interpreter</h3>
+                <p>A custom-built mathematical expression interpreter in Python — written from scratch without any external libraries. It tokenises, parses, and evaluates arithmetic expressions including operator precedence and parentheses.</p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>Parsing</span>
+                    <span>Algorithms</span>
+                    <span>Tokeniser</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="project-card">
+                <div class="project-header-row">
+                    <div class="project-number">03</div>
+                    <div class="project-tag-pill">Frontend · Design</div>
+                </div>
+                <h3>Portfolio Website</h3>
+                <p>This very portfolio — designed and coded entirely from scratch. Features an animated particle canvas background, smooth scroll animations, responsive layout, and interactive skill cards.</p>
+                <div class="project-tech">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                    <span>Canvas API</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        Live Site
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section contact-section">
+    <div class="container">
+        <div class="section-label">Say Hello</div>
+        <h2 class="section-title">Let's <em>Connect</em></h2>
+        <p class="section-desc">Open to internships, collaborations, and interesting conversations about tech.</p>
+        <div class="contact-grid">
+            <div class="contact-links">
+                <a href="https://github.com/mukul" target="_blank" class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-platform">GitHub</span>
+                        <span class="contact-handle">@mukul</span>
+                    </div>
+                    <svg class="contact-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="https://linkedin.com/in/mukul" target="_blank" class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-platform">LinkedIn</span>
+                        <span class="contact-handle">Mukul Kukreja</span>
+                    </div>
+                    <svg class="contact-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="mailto:mukulkukreja465@gmail.com" class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-platform">Email</span>
+                        <span class="contact-handle">mukulkukreja465@gmail.com</span>
+                    </div>
+                    <svg class="contact-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="john@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="4" placeholder="What's on your mind?" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary submit-btn">
+                    <span>Send Message</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+                <div class="form-success" id="formSuccess">✓ Message sent! I'll reply soon.</div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand"><span class="brand-dot"></span><span>Mukul Kukreja</span></div>
+            <p class="footer-copy">© 2026 Mukul Kukreja. Built with passion &amp; coffee ☕</p>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="portfolio.js"></script>
+</body>
 </html>

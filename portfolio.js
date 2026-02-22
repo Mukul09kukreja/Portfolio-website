@@ -194,7 +194,11 @@ function countUp(el, target) {
         el.textContent = val;
         if (p < 1) {
             requestAnimationFrame(step);
-        } else {
+        } 
+        else if (el.textContent == "1") {
+            el.textContent = target;
+        }
+        else {
             el.textContent = target + '+';
         }
     }
@@ -315,4 +319,4 @@ if (form) {
             }, 4500);
         }, 1200);
     });
-}
+} 

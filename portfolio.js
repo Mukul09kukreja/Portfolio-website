@@ -332,27 +332,104 @@ document.querySelectorAll('.project-card, .project-featured').forEach(card => {
 });
 
 // ══════════════════════════════════════
-// CONTACT FORM
+// CONTACT FORM — EmailJS Integration
 // ══════════════════════════════════════
+//
+// SETUP INSTRUCTIONS (takes ~5 minutes):
+//
+// 1. Go to https://emailjs.com and create a FREE account
+//
+// 2. Add an Email Service:
+//    Dashboard → Email Services → Add New Service
+//    Choose Gmail → connect your Gmail account
+//    Copy the SERVICE ID (e.g. "service_abc123")
+//
+// 3. Create an Email Template:
+//    Dashboard → Email Templates → Create New Template
+//    Set it up like this:
+//
+//      Subject:  New message from {{from_name}} via Portfolio
+//      To email: your email (mukul.kukreja09@gmail.com)
+//      Body:
+//        Name:    {{from_name}}
+//        Email:   {{reply_to}}
+//        Message: {{message}}
+//
+//    Save & copy the TEMPLATE ID (e.g. "template_xyz789")
+//
+// 4. Get your Public Key:
+//    Dashboard → Account → General → Public Key
+//
+// 5. Paste all three below and you're live!
+//
+// ──────────────────────────────────────
+
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // e.g. 'service_abc123'
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // e.g. 'template_xyz789'
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // e.g. 'AbCdEfGhIjKlMnOp'
+
+// Init EmailJS
+if (typeof emailjs !== 'undefined') {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+}
+
 const form = document.getElementById('contactForm');
 if (form) {
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async e => {
         e.preventDefault();
-        const btn     = form.querySelector('.submit-btn');
-        const label   = btn.querySelector('span');
-        const success = document.getElementById('formSuccess');
-        btn.disabled  = true;
+
+        const btn      = document.getElementById('submitBtn');
+        const label    = document.getElementById('submitLabel');
+        const icon     = document.getElementById('submitIcon');
+        const spinner  = document.getElementById('submitSpinner');
+        const success  = document.getElementById('formSuccess');
+        const errorBox = document.getElementById('formError');
+
+        // Check keys are configured
+        if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+            errorBox.textContent = '⚙ EmailJS not configured yet. See portfolio.js for setup.';
+            errorBox.classList.add('visible');
+            setTimeout(() => errorBox.classList.remove('visible'), 5000);
+            return;
+        }
+
+        // Loading state
+        btn.disabled = true;
         label.textContent = 'Sending…';
-        setTimeout(() => {
-            success.classList.add('visible');
+        icon.style.display = 'none';
+        spinner.style.display = 'inline';
+        success.classList.remove('visible');
+        errorBox.classList.remove('visible');
+
+        try {
+            await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
+
+            // Success state
             label.textContent = '✓ Sent!';
+            spinner.style.display = 'none';
+            success.classList.add('visible');
             form.reset();
+
             setTimeout(() => {
                 success.classList.remove('visible');
-                btn.disabled = false;
                 label.textContent = 'Send Message';
-            }, 4500);
-        }, 1200);
+                icon.style.display = 'inline';
+                btn.disabled = false;
+            }, 5000);
+
+        } catch (err) {
+            console.error('EmailJS error:', err);
+
+            // Error state
+            spinner.style.display = 'none';
+            icon.style.display = 'inline';
+            label.textContent = 'Send Message';
+            btn.disabled = false;
+            errorBox.textContent = '✗ Failed to send. Email me at mukul.kukreja09@gmail.com';
+            errorBox.classList.add('visible');
+
+            setTimeout(() => errorBox.classList.remove('visible'), 6000);
+        }
     });
 }
 

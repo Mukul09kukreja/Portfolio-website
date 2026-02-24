@@ -3,31 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mukul Kukreja — Computer Science Student & Developer">
-    <title>Mukul Kukreja | CS Student & Developer</title>
+    <title>Mukul Kukreja — CS Student & Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="portfolio.css">
 </head>
 <body>
 
-<canvas id="bg-canvas"></canvas>
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<!-- NOISE OVERLAY -->
+<div class="noise"></div>
 
 <!-- NAV -->
 <nav id="navbar">
-    <div class="nav-brand">
-        <span class="brand-dot"></span>
-        <span>Mukul</span>
+    <div class="nav-logo">
+        <span class="logo-bracket">[</span>
+        <span class="logo-name">MK</span>
+        <span class="logo-bracket">]</span>
     </div>
     <div class="nav-links">
-        <a href="#home"     class="nav-link" data-section="home">Home</a>
-        <a href="#about"    class="nav-link" data-section="about">About</a>
-        <a href="#skills"   class="nav-link" data-section="skills">Skills</a>
-        <a href="#projects" class="nav-link" data-section="projects">Projects</a>
-        <a href="#contact"  class="nav-link" data-section="contact">Contact</a>
+        <a href="#home"     class="nav-link" data-section="home"><span class="nl-num">01.</span>Home</a>
+        <a href="#about"    class="nav-link" data-section="about"><span class="nl-num">02.</span>About</a>
+        <a href="#skills"   class="nav-link" data-section="skills"><span class="nl-num">03.</span>Skills</a>
+        <a href="#projects" class="nav-link" data-section="projects"><span class="nl-num">04.</span>Projects</a>
+        <a href="#contact"  class="nav-link" data-section="contact"><span class="nl-num">05.</span>Contact</a>
     </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+    <a href="https://github.com/Mukul09kukreja" target="_blank" class="nav-gh">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+    </a>
+    <button class="menu-toggle" id="menuToggle">
         <span></span><span></span><span></span>
     </button>
 </nav>
@@ -42,84 +51,118 @@
 
 <!-- HERO -->
 <section id="home" class="hero">
-    <div class="hero-content">
-        <div class="hero-tag">
-            <span class="tag-dot"></span>
-            Open to opportunities
-        </div>
-        <h1 class="hero-title">
-            <span class="line hi-line">Hi, I'm</span>
-            <span class="line name-line">Mukul<span class="accent">.</span></span>
-        </h1>
-        <p class="hero-sub" id="heroSub"></p>
-        <div class="hero-cta">
-            <a href="#projects" class="btn btn-primary">
-                <span>View My Work</span>
-                <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
-        </div>
-        <div class="hero-stats">
-            <div class="stat">
-                            <span class="stat-num" data-target="5" style="color:#fff;display:block;">0</span>
-                            <span class="stat-label">Projects</span>
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="hero-inner">
+        <div class="hero-left">
+            <div class="hero-eyebrow">
+                <span class="eyebrow-line"></span>
+                <span class="eyebrow-text">CS Student & Developer</span>
+                <span class="status-badge"><span class="status-dot"></span>Open to work</span>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat">
-                <span class="stat-num" data-target="9" style="color:#fff;display:block;">0</span>
-                <span class="stat-label">Skills</span>
+
+            <h1 class="hero-title">
+                <span class="ht-row">
+                    <span class="ht-word ht-word--outline" data-text="MUKUL">MUKUL</span>
+                </span>
+                <span class="ht-row">
+                    <span class="ht-word ht-word--fill" data-text="KUKREJA">KUKREJA</span>
+                </span>
+            </h1>
+
+            <div class="hero-terminal">
+                <div class="terminal-bar">
+                    <span class="t-dot t-red"></span>
+                    <span class="t-dot t-yellow"></span>
+                    <span class="t-dot t-green"></span>
+                    <span class="t-title">mukul@portfolio:~</span>
+                </div>
+                <div class="terminal-body">
+                    <p class="t-line"><span class="t-prompt">$</span> <span class="t-cmd" id="terminalCmd"></span><span class="t-cursor">_</span></p>
+                    <p class="t-output" id="terminalOutput"></p>
+                </div>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat">
-                <span class="stat-num" data-target="1" style="color:#fff;display:block;">0</span>
-                <span class="stat-label">Years Learning</span>
+
+            <div class="hero-actions">
+                <a href="#projects" class="btn-main">
+                    <span>View Projects</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="#contact" class="btn-outline">Let's Talk</a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="hero-code-block">
+                <div class="hcb-header">
+                    <span class="hcb-lang">Python</span>
+                    <span class="hcb-file">mukul.py</span>
+                </div>
+                <pre class="hcb-code"><code><span class="c-kw">class</span> <span class="c-cls">Mukul</span>:
+    <span class="c-kw">def</span> <span class="c-fn">__init__</span>(self):
+        self.name     = <span class="c-str">"Mukul Kukreja"</span>
+        self.role     = <span class="c-str">"CS Student"</span>
+        self.location = <span class="c-str">"India 🇮🇳"</span>
+        self.skills   = [
+            <span class="c-str">"Python"</span>, <span class="c-str">"Web Dev"</span>,
+            <span class="c-str">"C"</span>, <span class="c-str">"Git"</span>
+        ]
+        self.goal     = <span class="c-str">"Build things</span>
+                        <span class="c-str"> that matter"</span>
+
+    <span class="c-kw">def</span> <span class="c-fn">is_available</span>(self):
+        <span class="c-kw">return</span> <span class="c-bool">True</span> <span class="c-comment"># always!</span>
+
+<span class="c-obj">me</span> = Mukul()
+<span class="c-fn">print</span>(me.is_available())</code></pre>
+                <div class="hcb-output">
+                    <span class="c-bool">True</span>
+                </div>
+            </div>
+
+            <div class="hero-stats-side">
+                <div class="hss-item">
+                    <span class="hss-num" data-target="5">0</span>
+                    <span class="hss-label">Projects</span>
+                </div>
+                <div class="hss-item">
+                    <span class="hss-num" data-target="9">0</span>
+                    <span class="hss-label">Skills</span>
+                </div>
+                <div class="hss-item">
+                    <span class="hss-num" data-target="1">0</span>
+                    <span class="hss-label">Year</span>
+                </div>
             </div>
         </div>
     </div>
-    <div class="hero-visual">
-        <div class="orbit-ring ring-1"><div class="orbit-icon">🐍</div></div>
-        <div class="orbit-ring ring-2"><div class="orbit-icon">⚙️</div></div>
-        <div class="orbit-ring ring-3"><div class="orbit-icon">📊</div></div>
-        <div class="center-blob"><span>CS</span></div>
+
+    <div class="scroll-prompt">
+        <div class="sp-wheel"></div>
+        <span>scroll</span>
     </div>
-    <div class="scroll-hint"><div class="scroll-line"></div><span>Scroll</span></div>
 </section>
 
 <!-- ABOUT -->
 <section id="about" class="section about-section">
     <div class="container">
-        <div class="section-label">Who I Am</div>
+        <div class="sec-label reveal">/ about me</div>
         <div class="about-grid">
-            <div class="about-text">
-                <h2 class="section-title">Passionate about<br><em>building things</em></h2>
-                <p>Hi, I'm <strong>Mukul Kukreja</strong> — a Computer Science student driven by curiosity and a love for solving real-world problems with code. I build clean, efficient software and am constantly learning new technologies to sharpen my skills.</p>
-                <p>I've competed in hackathons like <strong>Smart India Hackathon (SIH)</strong>, contributed to impactful projects, and explored fields ranging from computer vision to web development. I believe great software is both elegant and genuinely useful.</p>
-                <p class="highlight-text">✦ Let's connect and build something that matters.</p>
-                <a href="#contact" class="btn btn-primary" style="margin-top:1.75rem;display:inline-flex;">
-                    <span>Say Hello</span>
-                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+            <div class="about-headline reveal">
+                <h2>I write code.<br>I break things.<br><em>I learn fast.</em></h2>
             </div>
-            <div class="about-cards">
-                <div class="info-card">
-                    <div class="card-icon">🎓</div>
-                    <h4>Education</h4>
-                    <p>B.Tech Computer Science</p>
-                </div>
-                <div class="info-card">
-                    <div class="card-icon">💻</div>
-                    <h4>Focus</h4>
-                    <p>Web Dev &amp; Machine Learning</p>
-                </div>
-                <div class="info-card">
-                    <div class="card-icon">🏆</div>
-                    <h4>Achievements</h4>
-                    <p>SIH Hackathon Contributor</p>
-                </div>
-                <div class="info-card">
-                    <div class="card-icon">🌍</div>
-                    <h4>Interests</h4>
-                    <p>AI, Open Source, Problem Solving</p>
+            <div class="about-body">
+                <p class="reveal">Hey — I'm <strong>Mukul Kukreja</strong>, a B.Tech Computer Science student from India who genuinely enjoys building things. Not just for assignments, but because seeing something work that didn't exist before is a great feeling.</p>
+                <p class="reveal">I competed in <strong>Smart India Hackathon 2025</strong>, where my team built a pothole detection system using computer vision that auto-filed complaints to the government. That project showed me how code can actually affect real people.</p>
+                <p class="reveal">I'm learning every day — currently deep into Python, web development, and data structures. My goal for 2026: 10+ solid projects, open source contributions, and an internship.</p>
+
+                <div class="about-tags reveal">
+                    <span>🎓 B.Tech CS</span>
+                    <span>🐍 Python</span>
+                    <span>🌐 Web Dev</span>
+                    <span>🏆 SIH 2025</span>
+                    <span>🎯 Problem Solver</span>
+                    <span>🚀 Fast Learner</span>
                 </div>
             </div>
         </div>
@@ -129,63 +172,81 @@
 <!-- SKILLS -->
 <section id="skills" class="section skills-section">
     <div class="container">
-        <div class="section-label">What I Know</div>
-        <h2 class="section-title">My <em>Skills</em></h2>
-        <p class="section-desc">Technical expertise built through hands-on projects and continuous learning.</p>
+        <div class="sec-label reveal">/ what i know</div>
+        <h2 class="sec-title reveal">Skills &amp; Stack</h2>
+
         <div class="skills-grid">
-            <div class="skill-card" data-delay="0">
-                <div class="skill-icon-wrap">📝</div>
-                <span class="skill-name">HTML</span>
-                <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
-                <span class="skill-pct">90%</span>
+            <div class="skill-item reveal" data-delay="0">
+                <div class="si-top">
+                    <span class="si-icon">📝</span>
+                    <span class="si-name">HTML</span>
+                    <span class="si-pct">90%</span>
+                </div>
+                <div class="si-bar"><div class="si-fill" data-w="90"></div></div>
             </div>
-            <div class="skill-card" data-delay="60">
-                <div class="skill-icon-wrap">🎨</div>
-                <span class="skill-name">CSS</span>
-                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
-                <span class="skill-pct">85%</span>
+            <div class="skill-item reveal" data-delay="60">
+                <div class="si-top">
+                    <span class="si-icon">🎨</span>
+                    <span class="si-name">CSS</span>
+                    <span class="si-pct">85%</span>
+                </div>
+                <div class="si-bar"><div class="si-fill" data-w="85"></div></div>
             </div>
-            <div class="skill-card" data-delay="120">
-                <div class="skill-icon-wrap">🐍</div>
-                <span class="skill-name">Python</span>
-                <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
-                <span class="skill-pct">88%</span>
+            <div class="skill-item reveal" data-delay="120">
+                <div class="si-top">
+                    <span class="si-icon">🐍</span>
+                    <span class="si-name">Python</span>
+                    <span class="si-pct">88%</span>
+                </div>
+                <div class="si-bar"><div class="si-fill" data-w="88"></div></div>
             </div>
-            <div class="skill-card" data-delay="180">
-                <div class="skill-icon-wrap">📦</div>
-                <span class="skill-name">Git</span>
-                <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
-                <span class="skill-pct">80%</span>
+            <div class="skill-item reveal" data-delay="180">
+                <div class="si-top">
+                    <span class="si-icon">⚙️</span>
+                    <span class="si-name">C Language</span>
+                    <span class="si-pct">75%</span>
+                </div>
+                <div class="si-bar"><div class="si-fill" data-w="75"></div></div>
             </div>
-            <div class="skill-card" data-delay="240">
-                <div class="skill-icon-wrap">🐙</div>
-                <span class="skill-name">GitHub</span>
-                <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
-                <span class="skill-pct">82%</span>
+            <div class="skill-item reveal" data-delay="240">
+                <div class="si-top">
+                    <span class="si-icon">📦</span>
+                    <span class="si-name">Git</span>
+                    <span class="si-pct">80%</span>
+                </div>
+                <div class="si-bar"><div class="si-fill" data-w="80"></div></div>
             </div>
-            <div class="skill-card" data-delay="300">
-                <div class="skill-icon-wrap">⚙️</div>
-                <span class="skill-name">C Language</span>
-                <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
-                <span class="skill-pct">75%</span>
+            <div class="skill-item reveal" data-delay="300">
+                <div class="si-top">
+                    <span class="si-icon">🐙</span>
+                    <span class="si-name">GitHub</span>
+                    <span class="si-pct">82%</span>
+                </div>
+                <div class="si-bar"><div class="si-fill" data-w="82"></div></div>
             </div>
-            <div class="skill-card" data-delay="360">
-                <div class="skill-icon-wrap">📐</div>
-                <span class="skill-name">Mathematics</span>
-                <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
-                <span class="skill-pct">78%</span>
+            <div class="skill-item reveal" data-delay="360">
+                <div class="si-top">
+                    <span class="si-icon">📐</span>
+                    <span class="si-name">Mathematics</span>
+                    <span class="si-pct">78%</span>
+                </div>
+                <div class="si-bar"><div class="si-fill" data-w="78"></div></div>
             </div>
-            <div class="skill-card" data-delay="420">
-                <div class="skill-icon-wrap">🐛</div>
-                <span class="skill-name">Debugging in Python</span>
-                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
-                <span class="skill-pct">85%</span>
+            <div class="skill-item reveal" data-delay="420">
+                <div class="si-top">
+                    <span class="si-icon">🐛</span>
+                    <span class="si-name">Debugging</span>
+                    <span class="si-pct">85%</span>
+                </div>
+                <div class="si-bar"><div class="si-fill" data-w="85"></div></div>
             </div>
-            <div class="skill-card" data-delay="480">
-                <div class="skill-icon-wrap">📊</div>
-                <span class="skill-name">Data Structures in Python</span>
-                <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
-                <span class="skill-pct">80%</span>
+            <div class="skill-item reveal" data-delay="480">
+                <div class="si-top">
+                    <span class="si-icon">📊</span>
+                    <span class="si-name">Data Structures</span>
+                    <span class="si-pct">80%</span>
+                </div>
+                <div class="si-bar"><div class="si-fill" data-w="80"></div></div>
             </div>
         </div>
     </div>
@@ -194,137 +255,79 @@
 <!-- PROJECTS -->
 <section id="projects" class="section projects-section">
     <div class="container">
-        <div class="section-label">What I've Built</div>
-        <h2 class="section-title">My <em>Projects</em></h2>
-        <p class="section-desc">Real-world projects built with purpose — from national hackathons to personal tools.</p>
+        <div class="sec-label reveal">/ what i've built</div>
+        <h2 class="sec-title reveal">Projects</h2>
+
+        <!-- Featured -->
+        <div class="project-featured reveal">
+            <div class="pf-left">
+                <div class="pf-num">01</div>
+                <div class="pf-badge">🏆 SIH 2025</div>
+                <h3>SnapSamasya</h3>
+                <p>A smart pothole detection system built for Smart India Hackathon 2025. Uses computer vision (YOLOv8) to detect road damage from footage and auto-files government complaints. Team project — real impact, real code.</p>
+                <div class="p-tags">
+                    <span>TypeScript</span><span>Python</span><span>OpenCV</span><span>YOLOv8</span><span>ML</span>
+                </div>
+                <div class="p-meta">
+                    <span>👥 Team</span><span>🤝 Contributor</span><span>🏛️ Gov Tech</span>
+                </div>
+                <a href="https://github.com/Mukul09kukreja/SIH-2025" target="_blank" class="p-link">
+                    View on GitHub
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
+            <div class="pf-right">
+                <div class="pf-visual">
+                    <div class="pf-screen">
+                        <div class="pfs-bar"></div>
+                        <div class="pfs-body">
+                            <div class="pfs-line pfs-line--red">⚠ Pothole detected — confidence 94.2%</div>
+                            <div class="pfs-line">📍 Location: NH-48, Delhi–Gurgaon</div>
+                            <div class="pfs-line pfs-line--green">✓ Complaint filed → Authority notified</div>
+                            <div class="pfs-line pfs-line--dim">Processing next frame...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid -->
         <div class="projects-grid">
 
-            <!-- Project 1 — SIH 2025 -->
-            <article class="project-card featured">
-                <div class="project-badge">🏆 SIH 2025</div>
-                <div class="project-header-row">
-                    <div class="project-number">01</div>
-                    <div class="project-tag-pill">Computer Vision · Gov Tech</div>
-                </div>
-                <h3>SnapSamasya — SIH 2025</h3>
-                <p>A real-world smart infrastructure system built during <strong>Smart India Hackathon 2025</strong>. I contributed to this team project (forked from SumitSharma2124/SnapSamasya) that detects potholes in road footage using computer vision, then automatically files complaints to the relevant government authority — reducing manual reporting effort and improving road maintenance response times.</p>
-                <div class="project-tech">
-                    <span>TypeScript</span>
-                    <span>Python</span>
-                    <span>OpenCV</span>
-                    <span>YOLOv8</span>
-                    <span>ML</span>
-                    <span>Gov API</span>
-                </div>
-                <div class="project-meta">
-                    <span class="meta-tag">👥 Team Project</span>
-                    <span class="meta-tag">🤝 Contributor</span>
-                    <span class="meta-tag">🏛️ Government Submission</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Mukul09kukreja/SIH-2025" target="_blank" class="project-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                        View on GitHub
-                    </a>
-                </div>
-            </article>
-
-            <!-- Project 2 — Game Launcher UI -->
-            <article class="project-card">
-                <div class="project-header-row">
-                    <div class="project-number">02</div>
-                    <div class="project-tag-pill">Frontend · UI Design</div>
-                </div>
+            <article class="project-card reveal" data-delay="0">
+                <div class="pc-num">02</div>
+                <div class="pc-tag">Frontend · UI Design</div>
                 <h3>Game Launcher UI</h3>
-                <p>My first project after learning HTML &amp; CSS — a sleek, modern game launcher interface. Features a polished dark-themed layout with game cards, navigation panels, and interactive UI components inspired by popular gaming platforms like Steam and Epic Games.</p>
-                <div class="project-tech">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>UI Design</span>
-                    <span>Flexbox/Grid</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Mukul09kukreja/Game-launcher-UI" target="_blank" class="project-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                        View on GitHub
-                    </a>
-                </div>
+                <p>My first HTML/CSS project — a dark-themed game launcher interface inspired by Steam and Epic Games. Flexbox layouts, hover effects, polished panels.</p>
+                <div class="p-tags"><span>HTML</span><span>CSS</span><span>UI Design</span></div>
+                <a href="https://github.com/Mukul09kukreja/Game-launcher-UI" target="_blank" class="p-link">GitHub →</a>
             </article>
 
-            <!-- Project 3 — Portfolio Website -->
-            <article class="project-card">
-                <div class="project-header-row">
-                    <div class="project-number">03</div>
-                    <div class="project-tag-pill">Frontend · Design</div>
-                </div>
+            <article class="project-card reveal" data-delay="80">
+                <div class="pc-num">03</div>
+                <div class="pc-tag">Frontend · JS</div>
                 <h3>Portfolio Website</h3>
-                <p>This very portfolio — designed and coded entirely from scratch. Features an animated star-field canvas background, smooth scroll animations, responsive layout, interactive skill cards with progress bars, and a working contact form.</p>
-                <div class="project-tech">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                    <span>Canvas API</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Mukul09kukreja/Portfolio-website" target="_blank" class="project-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                        GitHub
-                    </a>
-                </div>
+                <p>This site — built from scratch with animated canvas, scroll reveals, typed text, and responsive layout. Every pixel intentional.</p>
+                <div class="p-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Canvas</span></div>
+                <a href="https://github.com/Mukul09kukreja/Portfolio-website" target="_blank" class="p-link">GitHub →</a>
             </article>
 
-            <!-- Project 4 — Python Project 1: Spelling Bee Game -->
-            <article class="project-card">
-                <div class="project-header-row">
-                    <div class="project-number">04</div>
-                    <div class="project-tag-pill">Python · CLI Game</div>
-                </div>
-                <h3>🎮 Spelling Bee Game</h3>
-                <p>A Python CLI game inspired by the Spelling Bee concept. Players are given a fixed set of letters (A I P C R H G) and must guess valid words to earn points. Guess <strong>GRAPHIC</strong> for an instant win! Built using dictionaries, loops, and user input handling — no external libraries needed.</p>
-                <div class="project-tech">
-                    <span>Python</span>
-                    <span>Dictionaries</span>
-                    <span>Game Loop</span>
-                    <span>CLI</span>
-                </div>
-                <div class="project-meta">
-                    <span class="meta-tag">🎯 Word Guessing</span>
-                    <span class="meta-tag">🏆 Score System</span>
-                    <span class="meta-tag">⚡ Instant Win</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Mukul09kukreja/Python-Project-1" target="_blank" class="project-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                        View on GitHub
-                    </a>
-                </div>
+            <article class="project-card reveal" data-delay="160">
+                <div class="pc-num">04</div>
+                <div class="pc-tag">Python · CLI Game</div>
+                <h3>Spelling Bee Game</h3>
+                <p>CLI word game — given a set of letters (A I P C R H G), guess valid words and earn points. Guess GRAPHIC for an instant win. Pure Python, no libraries.</p>
+                <div class="p-tags"><span>Python</span><span>Dicts</span><span>Game Loop</span><span>CLI</span></div>
+                <a href="https://github.com/Mukul09kukreja/Python-Project-1" target="_blank" class="p-link">GitHub →</a>
             </article>
 
-            <!-- Project 5 — Python Project 2: ASCII Greeting Generator -->
-            <article class="project-card">
-                <div class="project-header-row">
-                    <div class="project-number">05</div>
-                    <div class="project-tag-pill">Python · CLI Tool</div>
-                </div>
-                <h3>🚀 ASCII Greeting Generator</h3>
-                <p>A fun Python CLI tool that generates an ASCII art greeting using the <strong>cowsay</strong> library and command-line arguments. Pass your name as an argument and get greeted by a T-Rex in the terminal! Demonstrates <code>sys.argv</code> handling and use of external Python libraries.</p>
-                <div class="project-tech">
-                    <span>Python</span>
-                    <span>cowsay</span>
-                    <span>sys.argv</span>
-                    <span>CLI</span>
-                </div>
-                <div class="project-meta">
-                    <span class="meta-tag">🐄 ASCII Art</span>
-                    <span class="meta-tag">🗣️ User Input</span>
-                    <span class="meta-tag">💡 Beginner Friendly</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Mukul09kukreja/Python-Project-2" target="_blank" class="project-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                        View on GitHub
-                    </a>
-                </div>
+            <article class="project-card reveal" data-delay="240">
+                <div class="pc-num">05</div>
+                <div class="pc-tag">Python · CLI Tool</div>
+                <h3>ASCII Greeting Generator</h3>
+                <p>Run <code>python image.py Mukul</code> and get greeted by a T-Rex in the terminal. Uses cowsay + sys.argv — small, fun, and genuinely mine.</p>
+                <div class="p-tags"><span>Python</span><span>cowsay</span><span>sys.argv</span><span>CLI</span></div>
+                <a href="https://github.com/Mukul09kukreja/Python-Project-2" target="_blank" class="p-link">GitHub →</a>
             </article>
 
         </div>
@@ -334,60 +337,61 @@
 <!-- CONTACT -->
 <section id="contact" class="section contact-section">
     <div class="container">
-        <div class="section-label">Say Hello</div>
-        <h2 class="section-title">Let's <em>Connect</em></h2>
-        <p class="section-desc">Open to internships, collaborations, and interesting conversations about tech.</p>
+        <div class="sec-label reveal">/ say hello</div>
+        <h2 class="sec-title reveal">Let's Connect</h2>
+        <p class="sec-sub reveal">Open to internships, collabs, and interesting conversations about tech.</p>
+
         <div class="contact-grid">
-            <div class="contact-links">
-                <a href="https://github.com/Mukul09kukreja" target="_blank" class="contact-card">
-                    <div class="contact-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            <div class="contact-left reveal">
+                <a href="https://github.com/Mukul09kukreja" target="_blank" class="contact-row">
+                    <div class="cr-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
                     </div>
-                    <div class="contact-info">
-                        <span class="contact-platform">GitHub</span>
-                        <span class="contact-handle">@Mukul09kukreja</span>
+                    <div class="cr-info">
+                        <span class="cr-platform">GitHub</span>
+                        <span class="cr-handle">@Mukul09kukreja</span>
                     </div>
-                    <svg class="contact-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg class="cr-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
-                <a href="https://www.linkedin.com/in/mukul-mk-5405b8370/" target="_blank" class="contact-card">
-                    <div class="contact-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                <a href="https://www.linkedin.com/in/mukul-mk-5405b8370/" target="_blank" class="contact-row">
+                    <div class="cr-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
                     </div>
-                    <div class="contact-info">
-                        <span class="contact-platform">LinkedIn</span>
-                        <span class="contact-handle">Mukul Kukreja</span>
+                    <div class="cr-info">
+                        <span class="cr-platform">LinkedIn</span>
+                        <span class="cr-handle">Mukul Kukreja</span>
                     </div>
-                    <svg class="contact-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg class="cr-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
-                <a href="/cdn-cgi/l/email-protection#8ae7ffe1ffe6e1ffe1f8efe0ebbebcbfcaede7ebe3e6a4e9e5e7" class="contact-card">
-                    <div class="contact-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <div class="contact-row no-hover">
+                    <div class="cr-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     </div>
-                    <div class="contact-info">
-                        <span class="contact-platform">Email</span>
-                        <span class="contact-handle"><span class="__cf_email__" data-cfemail="771a021c021b1c021c05121d1643414237101a161e1b5914181a">[email&#160;protected]</span></span>
+                    <div class="cr-info">
+                        <span class="cr-platform">Email</span>
+                        <span class="cr-handle">mukul.kukreja09@gmail.com</span>
                     </div>
-                    <svg class="contact-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                </div>
             </div>
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" placeholder="John Doe" required>
+
+            <form class="contact-form reveal" id="contactForm">
+                <div class="fg">
+                    <label>Your Name</label>
+                    <input type="text" placeholder="John Doe" required>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="john@example.com" required>
+                <div class="fg">
+                    <label>Email</label>
+                    <input type="email" placeholder="john@example.com" required>
                 </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" rows="4" placeholder="What's on your mind?" required></textarea>
+                <div class="fg">
+                    <label>Message</label>
+                    <textarea rows="4" placeholder="What's on your mind?" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary submit-btn">
+                <button type="submit" class="btn-main submit-btn">
                     <span>Send Message</span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                 </button>
-                <div class="form-success" id="formSuccess">✓ Message sent! I'll reply soon.</div>
+                <div class="form-success" id="formSuccess">✓ Sent! I'll reply soon.</div>
             </form>
         </div>
     </div>
@@ -397,12 +401,12 @@
 <footer class="footer">
     <div class="container">
         <div class="footer-inner">
-            <div class="footer-brand"><span class="brand-dot"></span><span>Mukul Kukreja</span></div>
-            <p class="footer-copy">© 2026 Mukul Kukreja. Built with passion &amp; coffee ☕</p>
+            <span class="footer-logo">[MK]</span>
+            <span class="footer-copy">© 2026 Mukul Kukreja — built with curiosity &amp; caffeine</span>
             <div class="footer-links">
-                <a href="#home">Home</a>
+                <a href="#home">Top</a>
                 <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
+                <a href="https://github.com/Mukul09kukreja" target="_blank">GitHub</a>
             </div>
         </div>
     </div>

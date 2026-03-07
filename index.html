@@ -3,250 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mukul Kukreja — CS Student & Developer</title>
+    <title>Mukul Kukreja — CS Researcher & Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="portfolio.css">
 </head>
 <body>
 
-<!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
-<div class="cursor-trail" id="cursorTrail"></div>
-
-<!-- NOISE OVERLAY -->
-<div class="noise"></div>
 
 <!-- NAV -->
 <nav id="navbar">
-    <div class="nav-logo">
-        <span class="logo-bracket">[</span>
-        <span class="logo-name">MK</span>
-        <span class="logo-bracket">]</span>
+    <div class="nav-left">
+        <a href="#home" class="nav-wordmark">Mukul Kukreja</a>
+        <span class="nav-pipe">|</span>
+        <span class="nav-role">CS Researcher &amp; Developer</span>
     </div>
     <div class="nav-links">
-        <a href="#home"     class="nav-link" data-section="home"><span class="nl-num">01.</span>Home</a>
-        <a href="#about"    class="nav-link" data-section="about"><span class="nl-num">02.</span>About</a>
-        <a href="#skills"   class="nav-link" data-section="skills"><span class="nl-num">03.</span>Skills</a>
-        <a href="#projects" class="nav-link" data-section="projects"><span class="nl-num">04.</span>Projects</a>
-        <a href="#contact"  class="nav-link" data-section="contact"><span class="nl-num">05.</span>Contact</a>
+        <a href="#about"      class="nav-link">About</a>
+        <a href="#research"   class="nav-link">Research</a>
+        <a href="#hackathons" class="nav-link">Hackathons</a>
+        <a href="#projects"   class="nav-link">Projects</a>
+        <a href="#skills"     class="nav-link">Skills</a>
+        <a href="#contact"    class="nav-link nav-link--cta">Contact</a>
     </div>
-    <a href="https://github.com/Mukul09kukreja" target="_blank" class="nav-gh">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        GitHub
-    </a>
-    <button class="menu-toggle" id="menuToggle">
-        <span></span><span></span><span></span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span>
     </button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-    <a href="#home"     class="mobile-link">Home</a>
-    <a href="#about"    class="mobile-link">About</a>
-    <a href="#skills"   class="mobile-link">Skills</a>
-    <a href="#projects" class="mobile-link">Projects</a>
-    <a href="#contact"  class="mobile-link">Contact</a>
+    <button class="mobile-close" id="mobileClose">✕</button>
+    <a href="#about"      class="mobile-link">About</a>
+    <a href="#research"   class="mobile-link">Research</a>
+    <a href="#hackathons" class="mobile-link">Hackathons</a>
+    <a href="#projects"   class="mobile-link">Projects</a>
+    <a href="#skills"     class="mobile-link">Skills</a>
+    <a href="#contact"    class="mobile-link">Contact</a>
 </div>
 
 <!-- HERO -->
 <section id="home" class="hero">
-    <canvas id="bg-canvas"></canvas>
+    <div class="hero-top-bar"></div>
 
-    <div class="hero-inner">
-        <div class="hero-left">
-            <div class="hero-eyebrow">
-                <span class="eyebrow-line"></span>
-                <span class="eyebrow-text">CS Student & Developer</span>
-                <span class="status-badge"><span class="status-dot"></span>Open to work</span>
-            </div>
-
-            <h1 class="hero-title">
-                <span class="ht-row">
-                    <span class="ht-word ht-word--outline" data-text="MUKUL">MUKUL</span>
-                </span>
-                <span class="ht-row">
-                    <span class="ht-word ht-word--fill" data-text="KUKREJA">KUKREJA</span>
-                </span>
-            </h1>
-
-            <div class="hero-terminal">
-                <div class="terminal-bar">
-                    <span class="t-dot t-red"></span>
-                    <span class="t-dot t-yellow"></span>
-                    <span class="t-dot t-green"></span>
-                    <span class="t-title">mukul@portfolio:~</span>
+    <div class="wrap">
+        <div class="hero-inner">
+            <div class="hero-col-left">
+                <div class="hero-eyebrow reveal">
+                    <span class="dot-live"></span>
+                    Open to internships &amp; research collaborations
                 </div>
-                <div class="terminal-body">
-                    <p class="t-line"><span class="t-prompt">$</span> <span class="t-cmd" id="terminalCmd"></span><span class="t-cursor">_</span></p>
-                    <p class="t-output" id="terminalOutput"></p>
+
+                <h1 class="hero-name reveal">
+                    Mukul<br><em>Kukreja</em>
+                </h1>
+
+                <p class="hero-desc reveal">
+                    CS student · Developer · Researcher.<br>
+                    I build systems that <em>see</em>, reason, and act —<br>
+                    bridging deep learning with civic infrastructure.
+                </p>
+
+                <div class="hero-actions reveal">
+                    <a href="#research" class="btn-primary">View Research</a>
+                    <a href="#projects" class="btn-ghost">Projects</a>
                 </div>
-            </div>
 
-            <div class="hero-actions">
-                <a href="#projects" class="btn-main">
-                    <span>View Projects</span>
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-                <a href="#contact" class="btn-outline">Let's Talk</a>
-            </div>
-        </div>
-
-        <div class="hero-right">
-            <div class="hero-code-block">
-                <div class="hcb-header">
-                    <span class="hcb-lang">Python</span>
-                    <span class="hcb-file">mukul.py</span>
-                </div>
-                <pre class="hcb-code"><code><span class="c-kw">class</span> <span class="c-cls">Mukul</span>:
-    <span class="c-kw">def</span> <span class="c-fn">__init__</span>(self):
-        self.name     = <span class="c-str">"Mukul Kukreja"</span>
-        self.role     = <span class="c-str">"CS Student"</span>
-        self.location = <span class="c-str">"India 🇮🇳"</span>
-        self.skills   = [
-            <span class="c-str">"Python"</span>, <span class="c-str">"Web Dev"</span>,
-            <span class="c-str">"C"</span>, <span class="c-str">"Git"</span>
-        ]
-        self.goal     = <span class="c-str">"Build things</span>
-                        <span class="c-str"> that matter"</span>
-
-    <span class="c-kw">def</span> <span class="c-fn">is_available</span>(self):
-        <span class="c-kw">return</span> <span class="c-bool">True</span> <span class="c-comment"># always!</span>
-
-<span class="c-obj">me</span> = Mukul()
-<span class="c-fn">print</span>(me.is_available())</code></pre>
-                <div class="hcb-output">
-                    <span class="c-bool">True</span>
+                <div class="hero-links reveal">
+                    <a href="https://github.com/Mukul09kukreja" target="_blank">GitHub ↗</a>
+                    <a href="https://www.linkedin.com/in/mukul-mk-5405b8370/" target="_blank">LinkedIn ↗</a>
+                    <a href="/cdn-cgi/l/email-protection#e38e9688968fd3da88968891868982a3848e828a8fcd808c8e">Email ↗</a>
                 </div>
             </div>
 
-            <div class="hero-stats-side">
-                <div class="hss-item">
-                    <span class="hss-num" data-target="5">0</span>
-                    <span class="hss-label">Projects</span>
-                </div>
-                <div class="hss-item">
-                    <span class="hss-num" data-target="9">0</span>
-                    <span class="hss-label">Skills</span>
-                </div>
-                <div class="hss-item">
-                    <span class="hss-num" data-target="1">0</span>
-                    <span class="hss-label">Year</span>
+            <div class="hero-col-right reveal">
+                <div class="hero-card">
+                    <div class="hcard-label">Quick Profile</div>
+                    <div class="hcard-sep"></div>
+                    <table class="hcard-table">
+                        <tr>
+                            <td class="hct-key">Degree</td>
+                            <td class="hct-val">B.Tech Computer Science</td>
+                        </tr>
+                        <tr>
+                            <td class="hct-key">Location</td>
+                            <td class="hct-val">India 🇮🇳</td>
+                        </tr>
+                        <tr>
+                            <td class="hct-key">Research</td>
+                            <td class="hct-val">Computer Vision · Civic AI</td>
+                        </tr>
+                        <tr>
+                            <td class="hct-key">Hackathon</td>
+                            <td class="hct-val">SIH 2025 National Finalist</td>
+                        </tr>
+                        <tr>
+                            <td class="hct-key">Stack</td>
+                            <td class="hct-val">Python · YOLOv8 · Web</td>
+                        </tr>
+                        <tr>
+                            <td class="hct-key">Status</td>
+                            <td class="hct-val hct-val--green">Open to Work</td>
+                        </tr>
+                    </table>
+                    <div class="hcard-sep"></div>
+                    <div class="hcard-stats">
+                        <div class="hs-item">
+                            <span class="hs-n" data-target="5">0</span>
+                            <span class="hs-l">Projects</span>
+                        </div>
+                        <div class="hs-item">
+                            <span class="hs-n" data-target="2">0</span>
+                            <span class="hs-l">Hackathons</span>
+                        </div>
+                        <div class="hs-item">
+                            <span class="hs-n" data-target="1">0</span>
+                            <span class="hs-l">Paper</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="scroll-prompt">
-        <div class="sp-wheel"></div>
-        <span>scroll</span>
+    <div class="hero-scroll-hint reveal">
+        <span>scroll to explore</span>
+        <div class="scroll-line"></div>
     </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about" class="section about-section">
-    <div class="container">
-        <div class="sec-label reveal">/ about me</div>
-        <div class="about-grid">
-            <div class="about-headline reveal">
-                <h2>I write code.<br>I break things.<br><em>I learn fast.</em></h2>
-            </div>
-            <div class="about-body">
-                <p class="reveal">Hey — I'm <strong>Mukul Kukreja</strong>, a B.Tech Computer Science student from India who genuinely enjoys building things. Not just for assignments, but because seeing something work that didn't exist before is a great feeling.</p>
-                <p class="reveal">I competed in <strong>Smart India Hackathon 2025</strong>, where my team built a pothole detection system using computer vision that auto-filed complaints to the government. That project showed me how code can actually affect real people.</p>
-                <p class="reveal">I'm learning every day — currently deep into Python, web development, and data structures. My goal for 2026: 10+ solid projects, open source contributions, and an internship.</p>
+    <div class="wrap">
+        <div class="section-header reveal">
+            <span class="sec-num">01.</span>
+            <h2 class="sec-title">About</h2>
+        </div>
 
-                <div class="about-tags reveal">
-                    <span>🎓 B.Tech CS</span>
-                    <span>🐍 Python</span>
-                    <span>🌐 Web Dev</span>
-                    <span>🏆 SIH 2025</span>
-                    <span>🎯 Problem Solver</span>
-                    <span>🚀 Fast Learner</span>
+        <div class="about-layout">
+            <div class="about-left reveal">
+                <p class="about-lead">I'm a computer science student from India who believes code is most interesting when it touches real problems — potholes, public systems, the infrastructure people depend on daily.</p>
+                <p>I competed in <strong>Smart India Hackathon 2025</strong>, where my team built SnapSamasya: a computer vision system using YOLOv8 that detects road damage from footage and auto-files complaints to government portals. That project became my first taste of research-grade engineering.</p>
+                <p>I'm currently developing this work into a research paper, exploring the intersection of deep learning and civic technology. My goal for 2026: meaningful open-source contributions, an internship in ML/CV, and at least one published paper.</p>
+                <p>Outside of research, I build web interfaces with obsessive attention to detail, write Python tools for fun, and read broadly — philosophy of science, systems thinking, anything that sharpens how I frame problems.</p>
+            </div>
+            <div class="about-right reveal">
+                <div class="about-tags-title">Areas of Interest</div>
+                <div class="about-tags">
+                    <span>Computer Vision</span>
+                    <span>Machine Learning</span>
+                    <span>Civic Technology</span>
+                    <span>Web Development</span>
+                    <span>Open Source</span>
+                    <span>Systems Design</span>
+                    <span>Edge AI</span>
+                    <span>HCI</span>
+                </div>
+                <div class="about-quote">
+                    <blockquote>"The goal is not to build AI that replaces human effort — but AI that amplifies human reach."</blockquote>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills" class="section skills-section">
-    <div class="container">
-        <div class="sec-label reveal">/ what i know</div>
-        <h2 class="sec-title reveal">Skills &amp; Stack</h2>
+<!-- RESEARCH -->
+<section id="research" class="section research-section">
+    <div class="wrap">
+        <div class="section-header reveal">
+            <span class="sec-num">02.</span>
+            <h2 class="sec-title">Research</h2>
+        </div>
 
-        <div class="skills-grid">
-            <div class="skill-item reveal" data-delay="0">
-                <div class="si-top">
-                    <span class="si-icon">📝</span>
-                    <span class="si-name">HTML</span>
-                    <span class="si-pct">90%</span>
-                </div>
-                <div class="si-bar"><div class="si-fill" data-w="90"></div></div>
+        <p class="section-intro reveal">My research sits at the intersection of <em>computer vision</em>, <em>deep learning</em>, and <em>civic infrastructure</em> — asking how intelligent systems can reduce friction between citizens and public services.</p>
+
+        <!-- Paper card -->
+        <div class="paper-card reveal">
+            <div class="paper-toprow">
+                <span class="paper-tag">Working Paper</span>
+                <span class="paper-id">P — 01</span>
+                <span class="paper-year">2025–2026</span>
             </div>
-            <div class="skill-item reveal" data-delay="60">
-                <div class="si-top">
-                    <span class="si-icon">🎨</span>
-                    <span class="si-name">CSS</span>
-                    <span class="si-pct">85%</span>
-                </div>
-                <div class="si-bar"><div class="si-fill" data-w="85"></div></div>
+            <h3 class="paper-title">Automated Road Damage Detection and Civic Reporting Using YOLOv8 and Real-Time Computer Vision</h3>
+            <div class="paper-byline">Mukul Kukreja, et al. · B.Tech CS, India · Targeting IEEE / ACM</div>
+
+            <div class="paper-abstract">
+                <div class="pa-label">Abstract</div>
+                <p>This paper presents a lightweight, deployable system for real-time detection of road surface damage — potholes, cracks, and structural hazards — using the YOLOv8 object detection architecture. The system integrates GPS telemetry, image geolocation, and automated API calls to government grievance portals, filing civic complaints without human intervention. Evaluated on NH-48 corridor footage, the model achieves 94.2% detection confidence at 24 fps on consumer hardware. We discuss deployment constraints in bandwidth-limited environments and propose a citizen-facing mobile extension for crowdsourced data collection.</p>
             </div>
-            <div class="skill-item reveal" data-delay="120">
-                <div class="si-top">
-                    <span class="si-icon">🐍</span>
-                    <span class="si-name">Python</span>
-                    <span class="si-pct">88%</span>
-                </div>
-                <div class="si-bar"><div class="si-fill" data-w="88"></div></div>
+
+            <div class="paper-keywords">
+                <span class="pk-label">Keywords —</span>
+                <span>Object Detection</span>
+                <span>YOLOv8</span>
+                <span>Road Infrastructure</span>
+                <span>Civic AI</span>
+                <span>Deep Learning</span>
+                <span>Real-Time Systems</span>
             </div>
-            <div class="skill-item reveal" data-delay="180">
-                <div class="si-top">
-                    <span class="si-icon">⚙️</span>
-                    <span class="si-name">C Language</span>
-                    <span class="si-pct">75%</span>
+
+            <div class="paper-metrics">
+                <div class="pm-item">
+                    <span class="pm-val">94.2%</span>
+                    <span class="pm-key">Confidence</span>
                 </div>
-                <div class="si-bar"><div class="si-fill" data-w="75"></div></div>
+                <div class="pm-divider"></div>
+                <div class="pm-item">
+                    <span class="pm-val">24 fps</span>
+                    <span class="pm-key">Real-time inference</span>
+                </div>
+                <div class="pm-divider"></div>
+                <div class="pm-item">
+                    <span class="pm-val">YOLOv8</span>
+                    <span class="pm-key">Architecture</span>
+                </div>
+                <div class="pm-divider"></div>
+                <div class="pm-item">
+                    <span class="pm-val">NH-48</span>
+                    <span class="pm-key">Test corridor</span>
+                </div>
+                <div class="pm-divider"></div>
+                <a href="https://github.com/Mukul09kukreja/SIH-2025" target="_blank" class="pm-link">Repository ↗</a>
             </div>
-            <div class="skill-item reveal" data-delay="240">
-                <div class="si-top">
-                    <span class="si-icon">📦</span>
-                    <span class="si-name">Git</span>
-                    <span class="si-pct">80%</span>
-                </div>
-                <div class="si-bar"><div class="si-fill" data-w="80"></div></div>
+        </div>
+
+        <!-- Research interests -->
+        <h3 class="subsec-title reveal">Research Interests</h3>
+        <div class="interests-grid">
+            <div class="int-item reveal" data-delay="0">
+                <span class="int-num">I.</span>
+                <h4>Computer Vision &amp; Perception</h4>
+                <p>Object detection, semantic segmentation, and scene understanding applied to real-world infrastructure. Focused on lightweight, deployable architectures viable on edge hardware.</p>
             </div>
-            <div class="skill-item reveal" data-delay="300">
-                <div class="si-top">
-                    <span class="si-icon">🐙</span>
-                    <span class="si-name">GitHub</span>
-                    <span class="si-pct">82%</span>
-                </div>
-                <div class="si-bar"><div class="si-fill" data-w="82"></div></div>
+            <div class="int-item reveal" data-delay="70">
+                <span class="int-num">II.</span>
+                <h4>Civic Technology &amp; Gov-AI</h4>
+                <p>Designing AI pipelines that interface directly with government services, reducing manual friction in complaint-filing, reporting, and public resource allocation.</p>
             </div>
-            <div class="skill-item reveal" data-delay="360">
-                <div class="si-top">
-                    <span class="si-icon">📐</span>
-                    <span class="si-name">Mathematics</span>
-                    <span class="si-pct">78%</span>
-                </div>
-                <div class="si-bar"><div class="si-fill" data-w="78"></div></div>
+            <div class="int-item reveal" data-delay="140">
+                <span class="int-num">III.</span>
+                <h4>Edge Deployment &amp; Efficiency</h4>
+                <p>Running inference on consumer-grade hardware under bandwidth constraints. Compression, quantization, and optimization strategies for production CV systems.</p>
             </div>
-            <div class="skill-item reveal" data-delay="420">
-                <div class="si-top">
-                    <span class="si-icon">🐛</span>
-                    <span class="si-name">Debugging</span>
-                    <span class="si-pct">85%</span>
-                </div>
-                <div class="si-bar"><div class="si-fill" data-w="85"></div></div>
+            <div class="int-item reveal" data-delay="210">
+                <span class="int-num">IV.</span>
+                <h4>Human-Centered AI</h4>
+                <p>Explainability, trust, and feedback loops between citizens and automated systems. Building AI that communicates its reasoning to non-technical users.</p>
             </div>
-            <div class="skill-item reveal" data-delay="480">
-                <div class="si-top">
-                    <span class="si-icon">📊</span>
-                    <span class="si-name">Data Structures</span>
-                    <span class="si-pct">80%</span>
+        </div>
+    </div>
+</section>
+
+<!-- HACKATHONS -->
+<section id="hackathons" class="section hackathons-section">
+    <div class="wrap">
+        <div class="section-header reveal">
+            <span class="sec-num">03.</span>
+            <h2 class="sec-title">Hackathons</h2>
+        </div>
+
+        <p class="section-intro reveal">Competitive building is where theoretical knowledge meets the brutal constraints of a deadline. Each hackathon has been formative in how I think about rapid prototyping, team dynamics, and communicating technical ideas.</p>
+
+        <div class="hack-entries">
+
+            <div class="hack-entry reveal">
+                <div class="he-meta">
+                    <span class="he-date">December 2025</span>
+                    <span class="he-duration">36 hours</span>
                 </div>
-                <div class="si-bar"><div class="si-fill" data-w="80"></div></div>
+                <div class="he-body">
+                    <div class="he-badges">
+                        <span class="heb heb--gold">🏆 National Finalist</span>
+                        <span class="heb heb--gov">Government of India</span>
+                        <span class="heb heb--level">1M+ Participants</span>
+                    </div>
+                    <h3>Smart India Hackathon 2025</h3>
+                    <p class="he-sub">India's largest national-level hackathon. Problem statement: automated road damage reporting for civic infrastructure.</p>
+                    <p>Led the computer vision module for <strong>SnapSamasya</strong> — built the YOLOv8 integration, real-time video pipeline, GPS telemetry layer, and automated API calls to government grievance portals. The system went from zero to working demo in 36 hours across a 6-person team.</p>
+
+                    <div class="he-project-box">
+                        <span class="hpb-label">Project</span>
+                        <span class="hpb-title">SnapSamasya</span>
+                        <span class="hpb-flow">Detect damage → GPS-tag location → Auto-file complaint → Notify authorities</span>
+                    </div>
+
+                    <div class="he-tech">
+                        <span>Python</span><span>TypeScript</span><span>YOLOv8</span><span>OpenCV</span><span>FastAPI</span>
+                    </div>
+                    <div class="he-footer">
+                        <span>👥 6-member team</span>
+                        <span>🏛️ Gov Tech track</span>
+                        <span>🔬 Became a research paper</span>
+                        <a href="https://github.com/Mukul09kukreja/SIH-2025" target="_blank" class="text-link">Repository ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hack-entry reveal">
+                <div class="he-meta">
+                    <span class="he-date">2026</span>
+                    <span class="he-duration">Upcoming</span>
+                </div>
+                <div class="he-body">
+                    <div class="he-badges">
+                        <span class="heb heb--planned">Planned</span>
+                    </div>
+                    <h3>Internal Departmental Hackathon</h3>
+                    <p>Exploring a submission on accessibility technology — designing adaptive interfaces for differently-abled users, with voice commands, screen-reader-first design, and real-time speech APIs.</p>
+                    <div class="he-tech">
+                        <span>Web Accessibility</span><span>JavaScript</span><span>Speech APIs</span><span>Adaptive UI</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Lessons -->
+        <div class="hack-lessons reveal">
+            <h3 class="subsec-title">Lessons from the Field</h3>
+            <div class="lessons-list">
+                <div class="lesson">
+                    <span class="lesson-n">1.</span>
+                    <div>
+                        <strong>Scope ruthlessly.</strong> A working demo of one feature beats a broken demo of ten. Hackathons force you to identify the single most defensible core.
+                    </div>
+                </div>
+                <div class="lesson">
+                    <span class="lesson-n">2.</span>
+                    <div>
+                        <strong>Communicate the "so what."</strong> Judges are rarely engineers. The clearest path from model accuracy to citizen impact wins every time.
+                    </div>
+                </div>
+                <div class="lesson">
+                    <span class="lesson-n">3.</span>
+                    <div>
+                        <strong>Research emerges under pressure.</strong> SnapSamasya began as a 36-hour prototype. The questions it raised — bandwidth constraints, data bias, edge deployment — became my research agenda.
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -254,146 +348,224 @@
 
 <!-- PROJECTS -->
 <section id="projects" class="section projects-section">
-    <div class="container">
-        <div class="sec-label reveal">/ what i've built</div>
-        <h2 class="sec-title reveal">Projects</h2>
+    <div class="wrap">
+        <div class="section-header reveal">
+            <span class="sec-num">04.</span>
+            <h2 class="sec-title">Projects</h2>
+        </div>
 
-        <!-- Featured -->
-        <div class="project-featured reveal">
-            <div class="pf-left">
-                <div class="pf-num">01</div>
-                <div class="pf-badge">🏆 SIH 2025</div>
-                <h3>SnapSamasya</h3>
-                <p>A smart pothole detection system built for Smart India Hackathon 2025. Uses computer vision (YOLOv8) to detect road damage from footage and auto-files government complaints. Team project — real impact, real code.</p>
-                <div class="p-tags">
-                    <span>TypeScript</span><span>Python</span><span>OpenCV</span><span>YOLOv8</span><span>ML</span>
-                </div>
-                <div class="p-meta">
-                    <span>👥 Team</span><span>🤝 Contributor</span><span>🏛️ Gov Tech</span>
-                </div>
-                <a href="https://github.com/Mukul09kukreja/SIH-2025" target="_blank" class="p-link">
-                    View on GitHub
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+        <div class="projects-list">
+            <div class="pl-header reveal">
+                <span>No.</span>
+                <span>Project</span>
+                <span>Domain</span>
+                <span>Stack</span>
+                <span>Link</span>
             </div>
-            <div class="pf-right">
-                <div class="pf-visual">
-                    <div class="pf-screen">
-                        <div class="pfs-bar"></div>
-                        <div class="pfs-body">
-                            <div class="pfs-line pfs-line--red">⚠ Pothole detected — confidence 94.2%</div>
-                            <div class="pfs-line">📍 Location: NH-48, Delhi–Gurgaon</div>
-                            <div class="pfs-line pfs-line--green">✓ Complaint filed → Authority notified</div>
-                            <div class="pfs-line pfs-line--dim">Processing next frame...</div>
-                        </div>
+
+            <div class="pl-row reveal" data-delay="0">
+                <span class="plr-n">01</span>
+                <div class="plr-info">
+                    <h3>SnapSamasya</h3>
+                    <p>YOLOv8 road damage detection + automated government complaint filing. SIH 2025 national finalist.</p>
+                </div>
+                <span class="plr-domain">CV · ML · Civic</span>
+                <div class="plr-stack"><span>Python</span><span>YOLOv8</span><span>OpenCV</span></div>
+                <a href="https://github.com/Mukul09kukreja/SIH-2025" target="_blank" class="text-link">GitHub ↗</a>
+            </div>
+
+            <div class="pl-row reveal" data-delay="60">
+                <span class="plr-n">02</span>
+                <div class="plr-info">
+                    <h3>Portfolio Website</h3>
+                    <p>Hand-coded with canvas animations, scroll-reveal, typed text, and responsive layout. Zero frameworks.</p>
+                </div>
+                <span class="plr-domain">Frontend</span>
+                <div class="plr-stack"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                <a href="https://github.com/Mukul09kukreja/Portfolio-website" target="_blank" class="text-link">GitHub ↗</a>
+            </div>
+
+            <div class="pl-row reveal" data-delay="120">
+                <span class="plr-n">03</span>
+                <div class="plr-info">
+                    <h3>Game Launcher UI</h3>
+                    <p>Steam-inspired dark-themed launcher. First serious HTML/CSS project — flexbox layouts, polished hover states.</p>
+                </div>
+                <span class="plr-domain">UI Design</span>
+                <div class="plr-stack"><span>HTML</span><span>CSS</span></div>
+                <a href="https://github.com/Mukul09kukreja/Game-launcher-UI" target="_blank" class="text-link">GitHub ↗</a>
+            </div>
+
+            <div class="pl-row reveal" data-delay="180">
+                <span class="plr-n">04</span>
+                <div class="plr-info">
+                    <h3>Spelling Bee (CLI)</h3>
+                    <p>Terminal word game with letters A I P C R H G. Guess GRAPHIC for instant win. Pure Python.</p>
+                </div>
+                <span class="plr-domain">Python · CLI</span>
+                <div class="plr-stack"><span>Python</span></div>
+                <a href="https://github.com/Mukul09kukreja/Python-Project-1" target="_blank" class="text-link">GitHub ↗</a>
+            </div>
+
+            <div class="pl-row reveal" data-delay="240">
+                <span class="plr-n">05</span>
+                <div class="plr-info">
+                    <h3>ASCII Greeting Generator</h3>
+                    <p><code>python image.py Mukul</code> — greeted by a T-Rex via cowsay + sys.argv.</p>
+                </div>
+                <span class="plr-domain">Python · CLI</span>
+                <div class="plr-stack"><span>Python</span><span>cowsay</span></div>
+                <a href="https://github.com/Mukul09kukreja/Python-Project-2" target="_blank" class="text-link">GitHub ↗</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section skills-section">
+    <div class="wrap">
+        <div class="section-header reveal">
+            <span class="sec-num">05.</span>
+            <h2 class="sec-title">Skills</h2>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skills-block reveal" data-delay="0">
+                <h3>Languages</h3>
+                <div class="sb-rows">
+                    <div class="sb-row">
+                        <span>Python</span>
+                        <div class="sb-bar"><div class="sb-fill" data-w="88"></div></div>
+                        <span class="sb-pct">88</span>
+                    </div>
+                    <div class="sb-row">
+                        <span>JavaScript</span>
+                        <div class="sb-bar"><div class="sb-fill" data-w="78"></div></div>
+                        <span class="sb-pct">78</span>
+                    </div>
+                    <div class="sb-row">
+                        <span>C Language</span>
+                        <div class="sb-bar"><div class="sb-fill" data-w="75"></div></div>
+                        <span class="sb-pct">75</span>
+                    </div>
+                    <div class="sb-row">
+                        <span>TypeScript</span>
+                        <div class="sb-bar"><div class="sb-fill" data-w="65"></div></div>
+                        <span class="sb-pct">65</span>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Grid -->
-        <div class="projects-grid">
+            <div class="skills-block reveal" data-delay="80">
+                <h3>Web &amp; Frontend</h3>
+                <div class="sb-rows">
+                    <div class="sb-row">
+                        <span>HTML / CSS</span>
+                        <div class="sb-bar"><div class="sb-fill" data-w="90"></div></div>
+                        <span class="sb-pct">90</span>
+                    </div>
+                    <div class="sb-row">
+                        <span>JavaScript DOM</span>
+                        <div class="sb-bar"><div class="sb-fill" data-w="80"></div></div>
+                        <span class="sb-pct">80</span>
+                    </div>
+                    <div class="sb-row">
+                        <span>Canvas API</span>
+                        <div class="sb-bar"><div class="sb-fill" data-w="74"></div></div>
+                        <span class="sb-pct">74</span>
+                    </div>
+                    <div class="sb-row">
+                        <span>REST APIs</span>
+                        <div class="sb-bar"><div class="sb-fill" data-w="72"></div></div>
+                        <span class="sb-pct">72</span>
+                    </div>
+                </div>
+            </div>
 
-            <article class="project-card reveal" data-delay="0">
-                <div class="pc-num">02</div>
-                <div class="pc-tag">Frontend · UI Design</div>
-                <h3>Game Launcher UI</h3>
-                <p>My first HTML/CSS project — a dark-themed game launcher interface inspired by Steam and Epic Games. Flexbox layouts, hover effects, polished panels.</p>
-                <div class="p-tags"><span>HTML</span><span>CSS</span><span>UI Design</span></div>
-                <a href="https://github.com/Mukul09kukreja/Game-launcher-UI" target="_blank" class="p-link">GitHub →</a>
-            </article>
-
-            <article class="project-card reveal" data-delay="80">
-                <div class="pc-num">03</div>
-                <div class="pc-tag">Frontend · JS</div>
-                <h3>Portfolio Website</h3>
-                <p>This site — built from scratch with animated canvas, scroll reveals, typed text, and responsive layout. Every pixel intentional.</p>
-                <div class="p-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Canvas</span></div>
-                <a href="https://github.com/Mukul09kukreja/Portfolio-website" target="_blank" class="p-link">GitHub →</a>
-            </article>
-
-            <article class="project-card reveal" data-delay="160">
-                <div class="pc-num">04</div>
-                <div class="pc-tag">Python · CLI Game</div>
-                <h3>Spelling Bee Game</h3>
-                <p>CLI word game — given a set of letters (A I P C R H G), guess valid words and earn points. Guess GRAPHIC for an instant win. Pure Python, no libraries.</p>
-                <div class="p-tags"><span>Python</span><span>Dicts</span><span>Game Loop</span><span>CLI</span></div>
-                <a href="https://github.com/Mukul09kukreja/Python-Project-1" target="_blank" class="p-link">GitHub →</a>
-            </article>
-
-            <article class="project-card reveal" data-delay="240">
-                <div class="pc-num">05</div>
-                <div class="pc-tag">Python · CLI Tool</div>
-                <h3>ASCII Greeting Generator</h3>
-                <p>Run <code>python image.py Mukul</code> and get greeted by a T-Rex in the terminal. Uses cowsay + sys.argv — small, fun, and genuinely mine.</p>
-                <div class="p-tags"><span>Python</span><span>cowsay</span><span>sys.argv</span><span>CLI</span></div>
-                <a href="https://github.com/Mukul09kukreja/Python-Project-2" target="_blank" class="p-link">GitHub →</a>
-            </article>
-
+            <div class="skills-block reveal" data-delay="160">
+                <h3>Research &amp; ML</h3>
+                <div class="sb-rows">
+                    <div class="sb-row">
+                        <span>Computer Vision</span>
+                        <div class="sb-bar"><div class="sb-fill" data-w="70"></div></div>
+                        <span class="sb-pct">70</span>
+                    </div>
+                    <div class="sb-row">
+                        <span>Machine Learning</span>
+                        <div class="sb-bar"><div class="sb-fill" data-w="68"></div></div>
+                        <span class="sb-pct">68</span>
+                    </div>
+                    <div class="sb-row">
+                        <span>Data Structures</span>
+                        <div class="sb-bar"><div class="sb-fill" data-w="80"></div></div>
+                        <span class="sb-pct">80</span>
+                    </div>
+                    <div class="sb-row">
+                        <span>Git / GitHub</span>
+                        <div class="sb-bar"><div class="sb-fill" data-w="82"></div></div>
+                        <span class="sb-pct">82</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="section contact-section">
-    <div class="container">
-        <div class="sec-label reveal">/ say hello</div>
-        <h2 class="sec-title reveal">Let's Connect</h2>
-        <p class="sec-sub reveal">Open to internships, collabs, and interesting conversations about tech.</p>
+    <div class="wrap">
+        <div class="section-header reveal">
+            <span class="sec-num">06.</span>
+            <h2 class="sec-title">Contact</h2>
+        </div>
 
-        <div class="contact-grid">
+        <div class="contact-layout">
             <div class="contact-left reveal">
-                <a href="https://github.com/Mukul09kukreja" target="_blank" class="contact-row">
-                    <div class="cr-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                    </div>
-                    <div class="cr-info">
-                        <span class="cr-platform">GitHub</span>
-                        <span class="cr-handle">@Mukul09kukreja</span>
-                    </div>
-                    <svg class="cr-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/mukul-mk-5405b8370/" target="_blank" class="contact-row">
-                    <div class="cr-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-                    </div>
-                    <div class="cr-info">
-                        <span class="cr-platform">LinkedIn</span>
-                        <span class="cr-handle">Mukul Kukreja</span>
-                    </div>
-                    <svg class="cr-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-                <div class="contact-row no-hover">
-                    <div class="cr-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    </div>
-                    <div class="cr-info">
-                        <span class="cr-platform">Email</span>
-                        <span class="cr-handle">mukul.kukreja09@gmail.com</span>
-                    </div>
+                <p class="contact-lead">Open to research collaborations, internship opportunities, hackathon teams, and thoughtful conversations about technology and its implications.</p>
+
+                <div class="contact-channels">
+                    <a href="/cdn-cgi/l/email-protection#b8d5cdd3cdd48881d3cdd3caddd2d9f8dfd5d9d1d496dbd7d5" class="cc-row">
+                        <span class="ccr-label">Email</span>
+                        <span class="ccr-val"><span class="__cf_email__" data-cfemail="305d455b455c00095b455b42555a5170575d51595c1e535f5d">[email&#160;protected]</span></span>
+                        <span class="ccr-arrow">↗</span>
+                    </a>
+                    <a href="https://github.com/Mukul09kukreja" target="_blank" class="cc-row">
+                        <span class="ccr-label">GitHub</span>
+                        <span class="ccr-val">@Mukul09kukreja</span>
+                        <span class="ccr-arrow">↗</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mukul-mk-5405b8370/" target="_blank" class="cc-row">
+                        <span class="ccr-label">LinkedIn</span>
+                        <span class="ccr-val">Mukul Kukreja</span>
+                        <span class="ccr-arrow">↗</span>
+                    </a>
                 </div>
             </div>
 
             <form class="contact-form reveal" id="contactForm">
                 <div class="fg">
-                    <label>Your Name</label>
-                    <input type="text" name="from_name" placeholder="John Doe" required>
+                    <label>Name</label>
+                    <input type="text" name="from_name" placeholder="Your name" required>
                 </div>
                 <div class="fg">
                     <label>Email</label>
-                    <input type="email" name="reply_to" placeholder="john@example.com" required>
+                    <input type="email" name="reply_to" placeholder="your@email.com" required>
+                </div>
+                <div class="fg">
+                    <label>Subject</label>
+                    <input type="text" name="subject" placeholder="Research collab / Internship / ...">
                 </div>
                 <div class="fg">
                     <label>Message</label>
-                    <textarea name="message" rows="4" placeholder="What's on your mind?" required></textarea>
+                    <textarea name="message" rows="5" placeholder="What's on your mind?" required></textarea>
                 </div>
-                <button type="submit" class="btn-main submit-btn" id="submitBtn">
+                <button type="submit" class="btn-primary submit-btn" id="submitBtn">
                     <span id="submitLabel">Send Message</span>
-                    <svg id="submitIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                    <svg id="submitSpinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;animation:spin360 0.8s linear infinite"><circle cx="12" cy="12" r="10" stroke-opacity="0.3"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
+                    <svg id="submitIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    <svg id="submitSpinner" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;animation:spin 0.8s linear infinite"><circle cx="12" cy="12" r="10" opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
                 </button>
-                <div class="form-success" id="formSuccess">✓ Message sent! I'll reply soon.</div>
-                <div class="form-error" id="formError">✗ Failed to send. Try emailing me directly.</div>
+                <p class="form-success" id="formSuccess">Message sent — I'll respond within a few days.</p>
+                <p class="form-error"   id="formError">Could not send. Please email me directly.</p>
             </form>
         </div>
     </div>
@@ -401,20 +573,14 @@
 
 <!-- FOOTER -->
 <footer class="footer">
-    <div class="container">
+    <div class="wrap">
+        <div class="footer-bar"></div>
         <div class="footer-inner">
-            <span class="footer-logo">[MK]</span>
-            <span class="footer-copy">© 2026 Mukul Kukreja — built with curiosity &amp; caffeine</span>
-            <div class="footer-links">
-                <a href="#home">Top</a>
-                <a href="#projects">Projects</a>
-                <a href="https://github.com/Mukul09kukreja" target="_blank">GitHub</a>
+            <div>
+                <span class="footer-name">Mukul Kukreja</span>
+                <span class="footer-sub">CS Researcher · Developer · India · 2026</span>
             </div>
-        </div>
-    </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="portfolio.js"></script>
-</body>
-</html>
+            <div class="footer-links">
+                <a href="#home">Top ↑</a>
+                <a href="#research">Research</a>
+                <a href="https://github.com/Mukul09kukreja" target="_blank">GitHub</a>

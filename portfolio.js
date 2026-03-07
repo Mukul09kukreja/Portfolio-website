@@ -1,460 +1,256 @@
-/* portfolio.js — Dark Cinematic v5 */
+/* =========================================
+   MUKUL KUKREJA — PORTFOLIO JS
+   Researcher Edition
+   ========================================= */
 
-// ══════════════════════════════════════
-// CUSTOM CURSOR
-// ══════════════════════════════════════
-const cursor      = document.getElementById('cursor');
-const cursorTrail = document.getElementById('cursorTrail');
-let cx = 0, cy = 0, tx = 0, ty = 0;
+const EMAILJS_SERVICE_ID  = 'service_abc123';
+const EMAILJS_TEMPLATE_ID = 'template_xyz789';
+const EMAILJS_PUBLIC_KEY  = 'AbCdEfGhIjKlMnOp';
 
-document.addEventListener('mousemove', e => {
-    cx = e.clientX; cy = e.clientY;
-    cursor.style.left = cx + 'px';
-    cursor.style.top  = cy + 'px';
+document.addEventListener('DOMContentLoaded', () => {
+    initReveal();      // FIRST — make content visible before anything else
+    initCursor();
+    initNavbar();
+    initMobileMenu();
+    initSkillBars();
+    initCounters();
+    initNavHighlight();
+    initContactForm();
+    initHoverTilt();
 });
 
-// Smooth trailing cursor
-(function trailLoop() {
-    tx += (cx - tx) * 0.12;
-    ty += (cy - ty) * 0.12;
-    cursorTrail.style.left = tx + 'px';
-    cursorTrail.style.top  = ty + 'px';
-    requestAnimationFrame(trailLoop);
-})();
+/* ─── SCROLL REVEAL ───────────────────────────────────────────────────────────
+   FIX: The old code had rootMargin: '-32px' at the bottom which prevented
+   elements already in the viewport from ever firing isIntersecting = true.
+   
+   Solution:
+   1. On init, immediately reveal any .reveal elements whose top is already
+      within the viewport (no delay needed — they're already visible).
+   2. For the rest, use a clean observer with no negative rootMargin.
+   3. CSS also sets a no-JS fallback via <noscript> or by removing the class.
+─────────────────────────────────────────────────────────────────────────────── */
+function initReveal() {
+    const els = document.querySelectorAll('.reveal');
 
-document.querySelectorAll('a, button, .project-card, .contact-row, .skill-item').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.classList.add('hovered'); cursorTrail.classList.add('hovered'); });
-    el.addEventListener('mouseleave', () => { cursor.classList.remove('hovered'); cursorTrail.classList.remove('hovered'); });
-});
-
-// ══════════════════════════════════════
-// CANVAS — Flowing Particle Field
-// ══════════════════════════════════════
-const canvas = document.getElementById('bg-canvas');
-const ctx    = canvas.getContext('2d');
-let W, H;
-
-function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener('resize', () => { resize(); initParticles(); });
-
-const rand = (a, b) => a + Math.random() * (b - a);
-const randInt = (a, b) => Math.floor(rand(a, b));
-
-// Particles
-class Particle {
-    constructor() { this.reset(true); }
-    reset(init = false) {
-        this.x   = rand(0, W);
-        this.y   = init ? rand(0, H) : H + 10;
-        this.vx  = rand(-0.15, 0.15);
-        this.vy  = rand(-0.4, -0.1);
-        this.r   = rand(0.5, 1.8);
-        this.a   = 0;
-        this.maxA= rand(0.1, 0.5);
-        this.life= rand(0.5, 1);
-        this.age = 0;
-    }
-    update(mx, my) {
-        this.x  += this.vx;
-        this.y  += this.vy;
-        this.age += 0.005;
-        if (this.age < 0.15) this.a = (this.age / 0.15) * this.maxA;
-        else if (this.age > 0.85) this.a = ((1 - this.age) / 0.15) * this.maxA;
-        else this.a = this.maxA;
-        // Cursor attract
-        const dx = mx - this.x, dy = my - this.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist < 150) { this.vx += dx * 0.00015; this.vy += dy * 0.00015; }
-        if (this.age >= 1 || this.y < -10) this.reset();
-    }
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(57,255,148,${this.a})`;
-        ctx.fill();
-    }
-}
-
-// Grid lines (subtle)
-class GridLine {
-    constructor(isVertical) {
-        this.isV = isVertical;
-        this.pos = isVertical ? rand(0, W) : rand(0, H);
-        this.a   = rand(0.01, 0.04);
-        this.speed = rand(0.1, 0.4) * (Math.random() > 0.5 ? 1 : -1);
-    }
-    update() {
-        this.pos += this.speed;
-        if (this.isV && (this.pos < 0 || this.pos > W)) this.pos = this.isV ? rand(0, W) : rand(0, H);
-        if (!this.isV && (this.pos < 0 || this.pos > H)) this.pos = rand(0, H);
-    }
-    draw() {
-        ctx.beginPath();
-        if (this.isV) { ctx.moveTo(this.pos, 0); ctx.lineTo(this.pos, H); }
-        else           { ctx.moveTo(0, this.pos); ctx.lineTo(W, this.pos); }
-        ctx.strokeStyle = `rgba(57,255,148,${this.a})`;
-        ctx.lineWidth = 0.5;
-        ctx.stroke();
-    }
-}
-
-let particles = [], gridLines = [];
-function initParticles() {
-    particles = [];
-    gridLines = [];
-    const n = Math.min(Math.floor(W * H / 8000), 140);
-    for (let i = 0; i < n; i++) particles.push(new Particle());
-    for (let i = 0; i < 6; i++) gridLines.push(new GridLine(true));
-    for (let i = 0; i < 4; i++) gridLines.push(new GridLine(false));
-}
-initParticles();
-
-// Connection lines between close particles
-const MAX_D = 100;
-function drawConnections() {
-    for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-            const d = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
-            if (d < MAX_D) {
-                const alpha = (1 - d / MAX_D) * 0.12;
-                ctx.beginPath();
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.strokeStyle = `rgba(57,255,148,${alpha})`;
-                ctx.lineWidth = 0.4;
-                ctx.stroke();
-            }
+    // Step 1: immediately show anything in the initial viewport
+    const VH = window.innerHeight;
+    els.forEach(el => {
+        const rect  = el.getBoundingClientRect();
+        const delay = parseInt(el.dataset.delay || 0);
+        if (rect.top < VH - 20) {
+            // already on screen — reveal with a small stagger but no scroll needed
+            setTimeout(() => el.classList.add('visible'), delay);
         }
-    }
-}
+    });
 
-let mx = W / 2, my = H / 2;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    // Step 2: watch the rest as user scrolls
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const delay = parseInt(entry.target.dataset.delay || 0);
+            setTimeout(() => entry.target.classList.add('visible'), delay);
+            io.unobserve(entry.target);
+        });
+    }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px 0px 0px'   // no negative margin — was the bug
+    });
 
-// Glow orbs
-const orbs = [
-    { x: 0.15, y: 0.3,  r: 0.35, c: '57,255,148', a: 0.04 },
-    { x: 0.85, y: 0.7,  r: 0.28, c: '0,212,170',  a: 0.03 },
-    { x: 0.5,  y: 0.15, r: 0.2,  c: '57,255,148', a: 0.025 },
-];
-
-function drawOrbs() {
-    orbs.forEach(o => {
-        const g = ctx.createRadialGradient(o.x*W, o.y*H, 0, o.x*W, o.y*H, o.r*Math.max(W,H));
-        g.addColorStop(0, `rgba(${o.c},${o.a})`);
-        g.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(o.x*W, o.y*H, o.r*Math.max(W,H), 0, Math.PI*2);
-        ctx.fill();
+    els.forEach(el => {
+        if (!el.classList.contains('visible')) io.observe(el);
     });
 }
 
-(function loop() {
-    ctx.clearRect(0, 0, W, H);
-    drawOrbs();
-    gridLines.forEach(g => { g.update(); g.draw(); });
-    particles.forEach(p => { p.update(mx, my); p.draw(); });
-    drawConnections();
-    requestAnimationFrame(loop);
-})();
+/* ─── CURSOR ─── */
+function initCursor() {
+    const el = document.getElementById('cursor');
+    if (!el) return;
 
-// ══════════════════════════════════════
-// NAVBAR
-// ══════════════════════════════════════
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
-    updateActiveNav();
-}, { passive: true });
+    // Start offscreen so it doesn't flash at 0,0
+    let x = -100, y = -100, tx = -100, ty = -100;
+    let started = false;
 
-function updateActiveNav() {
-    const scrollY = window.scrollY + 130;
-    document.querySelectorAll('section[id]').forEach(s => {
-        const link = document.querySelector(`.nav-link[data-section="${s.id}"]`);
-        if (link) link.classList.toggle('active', scrollY >= s.offsetTop && scrollY < s.offsetTop + s.offsetHeight);
+    document.addEventListener('mousemove', e => {
+        tx = e.clientX;
+        ty = e.clientY;
+        if (!started) {
+            // Snap to position immediately on first move — no lerp lag
+            x = tx; y = ty;
+            el.style.left = x + 'px';
+            el.style.top  = y + 'px';
+            // Now reveal it and hide the OS cursor
+            document.body.classList.add('cursor-ready');
+            started = true;
+        }
+    });
+
+    // Hide custom cursor when mouse leaves the window
+    document.addEventListener('mouseleave', () => {
+        document.body.classList.remove('cursor-ready');
+    });
+    document.addEventListener('mouseenter', () => {
+        if (started) document.body.classList.add('cursor-ready');
+    });
+
+    function tick() {
+        x += (tx - x) * 0.18;
+        y += (ty - y) * 0.18;
+        el.style.left = x + 'px';
+        el.style.top  = y + 'px';
+        requestAnimationFrame(tick);
+    }
+    tick();
+
+    document.querySelectorAll('a, button, .pl-row, .about-tags span, .int-item').forEach(node => {
+        node.addEventListener('mouseenter', () => document.body.classList.add('c-hover'));
+        node.addEventListener('mouseleave', () => document.body.classList.remove('c-hover'));
     });
 }
 
-document.querySelectorAll('a[href^="#"]').forEach(el => {
-    el.addEventListener('click', e => {
-        const target = document.querySelector(el.getAttribute('href'));
-        if (!target) return;
-        e.preventDefault();
-        const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav')) || 72;
-        window.scrollTo({ top: target.offsetTop - navH + 1, behavior: 'smooth' });
-        if (mobileMenu.classList.contains('open')) toggleMenu();
-    });
-});
-
-// ══════════════════════════════════════
-// MOBILE MENU
-// ══════════════════════════════════════
-const menuToggle = document.getElementById('menuToggle');
-const mobileMenu = document.getElementById('mobileMenu');
-
-function toggleMenu() {
-    const open = mobileMenu.classList.toggle('open');
-    const spans = menuToggle.querySelectorAll('span');
-    spans[0].style.transform = open ? 'rotate(45deg) translate(5px, 5px)' : '';
-    spans[1].style.opacity   = open ? '0' : '1';
-    spans[2].style.transform = open ? 'rotate(-45deg) translate(5px, -5px)' : '';
-}
-menuToggle.addEventListener('click', toggleMenu);
-
-// ══════════════════════════════════════
-// TERMINAL TYPING EFFECT
-// ══════════════════════════════════════
-const termCmd    = document.getElementById('terminalCmd');
-const termOutput = document.getElementById('terminalOutput');
-
-const sequences = [
-    { cmd: 'whoami',              out: 'mukul_kukreja — cs student & dev' },
-    { cmd: 'cat skills.txt',      out: 'python, html, css, c, git, github' },
-    { cmd: './run_sih_project.py',out: '✓ Pothole detected. Complaint filed.' },
-    { cmd: 'git status',          out: 'On branch main — 5 projects committed' },
-    { cmd: 'python spelling_bee.py', out: 'GRAPHIC → instant win! 🎮' },
-];
-
-let seqIdx = 0;
-const randT = (a, b) => a + Math.random() * (b - a);
-
-async function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-async function typeCmd(text) {
-    termCmd.textContent = '';
-    for (let ch of text) {
-        termCmd.textContent += ch;
-        await sleep(randT(40, 90));
-    }
+/* ─── NAVBAR ─── */
+function initNavbar() {
+    const nav = document.getElementById('navbar');
+    if (!nav) return;
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 }
 
-async function showOutput(text) {
-    await sleep(300);
-    termOutput.textContent = text;
-    termOutput.classList.add('visible');
+/* ─── MOBILE MENU ─── */
+function initMobileMenu() {
+    const toggle = document.getElementById('menuToggle');
+    const menu   = document.getElementById('mobileMenu');
+    const close  = document.getElementById('mobileClose');
+    if (!toggle || !menu) return;
+
+    const open = () => { menu.classList.add('open'); toggle.classList.add('open'); };
+    const shut = () => { menu.classList.remove('open'); toggle.classList.remove('open'); };
+
+    toggle.addEventListener('click', open);
+    if (close) close.addEventListener('click', shut);
+    menu.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', shut));
 }
 
-async function clearTerminal() {
-    await sleep(2200);
-    termOutput.classList.remove('visible');
-    await sleep(200);
-    termCmd.textContent = '';
+/* ─── SKILL BARS ─── */
+function initSkillBars() {
+    const fills = document.querySelectorAll('.sb-fill');
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.style.width = entry.target.dataset.w + '%';
+            io.unobserve(entry.target);
+        });
+    }, { threshold: 0.3 });
+    fills.forEach(el => io.observe(el));
 }
 
-async function runTerminal() {
-    await sleep(1200);
-    while (true) {
-        const seq = sequences[seqIdx % sequences.length];
-        seqIdx++;
-        await typeCmd(seq.cmd);
-        await showOutput(seq.out);
-        await clearTerminal();
-    }
+/* ─── COUNTERS ─── */
+function initCounters() {
+    const nums = document.querySelectorAll('[data-target]');
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            countUp(entry.target);
+            io.unobserve(entry.target);
+        });
+    }, { threshold: 0.5 });
+    nums.forEach(el => io.observe(el));
 }
-runTerminal();
 
-// ══════════════════════════════════════
-// STAT COUNTERS
-// ══════════════════════════════════════
-function countUp(el, target) {
-    el.textContent = '0';
-    let start = null;
-    const dur = 1800;
-    function step(ts) {
-        if (!start) start = ts;
-        const p = Math.min((ts - start) / dur, 1);
-        const ease = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(ease * target);
+function countUp(el) {
+    const target = parseInt(el.dataset.target);
+    const dur    = target > 100 ? 2000 : 1200;
+    const start  = performance.now();
+    const step   = now => {
+        const p = Math.min((now - start) / dur, 1);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(e * target);
         if (p < 1) requestAnimationFrame(step);
-        else el.textContent = target === 1 ? target : target + '+';
-    }
+        else el.textContent = target;
+    };
     requestAnimationFrame(step);
 }
 
-const counterObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-        if (e.isIntersecting) {
-            const t = parseInt(e.target.dataset.target);
-            countUp(e.target, t);
-            counterObs.unobserve(e.target);
-        }
-    });
-}, { threshold: 0.5 });
+/* ─── NAV SECTION HIGHLIGHT ─── */
+function initNavHighlight() {
+    const links    = document.querySelectorAll('.nav-link[href^="#"]');
+    const sections = document.querySelectorAll('section[id]');
 
-document.querySelectorAll('.hss-num[data-target]').forEach(el => counterObs.observe(el));
-
-// ══════════════════════════════════════
-// SKILL BAR ANIMATION
-// ══════════════════════════════════════
-const skillObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const fill  = e.target.querySelector('.si-fill');
-        const delay = parseInt(e.target.dataset.delay) || 0;
-        if (fill) setTimeout(() => { fill.style.width = fill.dataset.w + '%'; }, delay);
-        skillObs.unobserve(e.target);
-    });
-}, { threshold: 0.2 });
-
-document.querySelectorAll('.skill-item').forEach(el => skillObs.observe(el));
-
-// ══════════════════════════════════════
-// SCROLL REVEAL
-// ══════════════════════════════════════
-const revealObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-        if (e.isIntersecting) {
-            const delay = parseInt(e.target.dataset.delay) || 0;
-            setTimeout(() => e.target.classList.add('in-view'), delay);
-            revealObs.unobserve(e.target);
-        }
-    });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
-// ══════════════════════════════════════
-// PROJECT CARD 3D TILT
-// ══════════════════════════════════════
-document.querySelectorAll('.project-card, .project-featured').forEach(card => {
-    card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width  / 2) / r.width;
-        const y = (e.clientY - r.top  - r.height / 2) / r.height;
-        card.style.transform = `perspective(800px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-4px)`;
-    });
-    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-});
-
-// ══════════════════════════════════════
-// CONTACT FORM — EmailJS Integration
-// ══════════════════════════════════════
-//
-// SETUP INSTRUCTIONS (takes ~5 minutes):
-//
-// 1. Go to https://emailjs.com and create a FREE account
-//
-// 2. Add an Email Service:
-//    Dashboard → Email Services → Add New Service
-//    Choose Gmail → connect your Gmail account
-//    Copy the SERVICE ID (e.g. "service_abc123")
-//
-// 3. Create an Email Template:
-//    Dashboard → Email Templates → Create New Template
-//    Set it up like this:
-//
-//      Subject:  New message from {{from_name}} via Portfolio
-//      To email: your email (mukul.kukreja09@gmail.com)
-//      Body:
-//        Name:    {{from_name}}
-//        Email:   {{reply_to}}
-//        Message: {{message}}
-//
-//    Save & copy the TEMPLATE ID (e.g. "template_xyz789")
-//
-// 4. Get your Public Key:
-//    Dashboard → Account → General → Public Key
-//
-// 5. Paste all three below and you're live!
-//
-// ──────────────────────────────────────
-
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // e.g. 'service_abc123'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // e.g. 'template_xyz789'
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // e.g. 'AbCdEfGhIjKlMnOp'
-
-// Init EmailJS
-if (typeof emailjs !== 'undefined') {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
+    const update = () => {
+        let current = '';
+        sections.forEach(sec => {
+            if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+        });
+        links.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+        });
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
 }
 
-const form = document.getElementById('contactForm');
-if (form) {
+/* ─── HOVER TILT ─── */
+function initHoverTilt() {
+    document.querySelectorAll('.hack-entry .he-body, .paper-card, .int-item').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            const x = ((e.clientX - r.left) / r.width  - 0.5) * 4;
+            const y = ((e.clientY - r.top)  / r.height - 0.5) * -4;
+            card.style.transform = `perspective(800px) rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+        card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+}
+
+/* ─── CONTACT FORM ─── */
+function initContactForm() {
+    const form    = document.getElementById('contactForm');
+    const btn     = document.getElementById('submitBtn');
+    const label   = document.getElementById('submitLabel');
+    const icon    = document.getElementById('submitIcon');
+    const spinner = document.getElementById('submitSpinner');
+    const success = document.getElementById('formSuccess');
+    const error   = document.getElementById('formError');
+    if (!form) return;
+
+    const keysSet = (
+        EMAILJS_SERVICE_ID  !== 'service_abc123' &&
+        EMAILJS_TEMPLATE_ID !== 'template_xyz789' &&
+        EMAILJS_PUBLIC_KEY  !== 'AbCdEfGhIjKlMnOp'
+    );
+    if (keysSet && typeof emailjs !== 'undefined') emailjs.init(EMAILJS_PUBLIC_KEY);
+
     form.addEventListener('submit', async e => {
         e.preventDefault();
+        success.style.display = 'none';
+        error.style.display   = 'none';
+        label.textContent     = 'Sending…';
+        spinner.style.display = 'inline';
+        icon.style.display    = 'none';
+        btn.disabled          = true;
 
-        const btn      = document.getElementById('submitBtn');
-        const label    = document.getElementById('submitLabel');
-        const icon     = document.getElementById('submitIcon');
-        const spinner  = document.getElementById('submitSpinner');
-        const success  = document.getElementById('formSuccess');
-        const errorBox = document.getElementById('formError');
+        const reset = () => {
+            label.textContent     = 'Send Message';
+            spinner.style.display = 'none';
+            icon.style.display    = 'inline';
+            btn.disabled          = false;
+        };
 
-        // Check keys are configured
-        if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
-            errorBox.textContent = '⚙ EmailJS not configured yet. See portfolio.js for setup.';
-            errorBox.classList.add('visible');
-            setTimeout(() => errorBox.classList.remove('visible'), 5000);
+        if (!keysSet || typeof emailjs === 'undefined') {
+            await new Promise(r => setTimeout(r, 600));
+            reset();
+            error.style.display = 'block';
+            error.textContent   = 'EmailJS not configured. Set your keys in portfolio.js.';
             return;
         }
-
-        // Loading state
-        btn.disabled = true;
-        label.textContent = 'Sending…';
-        icon.style.display = 'none';
-        spinner.style.display = 'inline';
-        success.classList.remove('visible');
-        errorBox.classList.remove('visible');
-
         try {
             await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
-
-            // Success state
-            label.textContent = '✓ Sent!';
-            spinner.style.display = 'none';
-            success.classList.add('visible');
+            success.style.display = 'block';
             form.reset();
-
-            setTimeout(() => {
-                success.classList.remove('visible');
-                label.textContent = 'Send Message';
-                icon.style.display = 'inline';
-                btn.disabled = false;
-            }, 5000);
-
-        } catch (err) {
-            console.error('EmailJS error:', err);
-
-            // Error state
-            spinner.style.display = 'none';
-            icon.style.display = 'inline';
-            label.textContent = 'Send Message';
-            btn.disabled = false;
-            errorBox.textContent = '✗ Failed to send. Email me at mukul.kukreja09@gmail.com';
-            errorBox.classList.add('visible');
-
-            setTimeout(() => errorBox.classList.remove('visible'), 6000);
+        } catch {
+            error.style.display = 'block';
+        } finally {
+            reset();
         }
     });
 }
-
-// ══════════════════════════════════════
-// HERO TITLE GLITCH on hover
-// ══════════════════════════════════════
-document.querySelectorAll('.ht-word').forEach(word => {
-    let glitching = false;
-    word.addEventListener('mouseenter', () => {
-        if (glitching) return;
-        glitching = true;
-        const original = word.textContent;
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%';
-        let iters = 0;
-        const interval = setInterval(() => {
-            word.textContent = original.split('').map((c, i) => {
-                if (i < iters) return original[i];
-                return c === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)];
-            }).join('');
-            iters += 0.5;
-            if (iters >= original.length) {
-                clearInterval(interval);
-                word.textContent = original;
-                glitching = false;
-            }
-        }, 35);
-    });
-});

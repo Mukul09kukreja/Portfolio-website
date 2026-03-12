@@ -3,9 +3,9 @@
    Researcher Edition
    ========================================= */
 
-const EMAILJS_SERVICE_ID  = 'service_abc123';
-const EMAILJS_TEMPLATE_ID = 'template_xyz789';
-const EMAILJS_PUBLIC_KEY  = 'AbCdEfGhIjKlMnOp';
+const EMAILJS_SERVICE_ID  = 'service_ibrzron';
+const EMAILJS_TEMPLATE_ID = 'template_u3yylf7';
+const EMAILJS_PUBLIC_KEY  = 'H_kmwqpUnQqI2PpeE';
 
 document.addEventListener('DOMContentLoaded', () => {
     initReveal();      // FIRST — make content visible before anything else
